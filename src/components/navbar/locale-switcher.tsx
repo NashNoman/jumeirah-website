@@ -1,5 +1,6 @@
 "use client";
 
+import { useNavigationProgress } from "@/components/navigation-progress";
 import { getPathname, usePathname } from "@/i18n/navigation";
 import { luxuryPresets } from "@/lib/luxury-presets";
 import { cn } from "@/lib/utils";
@@ -14,7 +15,9 @@ type AppLocale = "en" | "ar";
 
 interface LocaleSwitcherProps {
   locales?: { code: AppLocale | undefined; label: string }[];
-  onSelect?: () => void;
+  /** Fired only when the tap doesn't navigate, i.e. the locale picked is
+   * the one already active. */
+  onSameLocaleSelect?: () => void;
   variant?: "desktop" | "mobile";
   className?: string;
   animated?: boolean;
@@ -29,7 +32,7 @@ const DEFAULT_LOCALES = [
 
 export function LocaleSwitcher({
   locales,
-  onSelect,
+  onSameLocaleSelect,
   variant = "desktop",
   className,
   animated = true,
@@ -38,6 +41,10 @@ export function LocaleSwitcher({
 }: LocaleSwitcherProps) {
   const pathname = usePathname();
   const currentLocale = useLocale();
+  // These are raw next/link elements rather than progress-link, on
+  // purpose (see the comment on the href below), so they have to report
+  // navigation to the progress bar themselves.
+  const { start } = useNavigationProgress();
   const available: { code: AppLocale | undefined; label: string }[] =
     locales && locales.length ? locales : [...DEFAULT_LOCALES];
 
@@ -99,11 +106,11 @@ export function LocaleSwitcher({
                   isActive && "text-primary border-white/30 bg-white/20",
                 )}
                 onClick={(e) => {
-                  onSelect?.();
-                  if (isActive) {
-                    e.preventDefault();
-                  }
+                  if (!isActive) return;
+                  e.preventDefault();
+                  onSameLocaleSelect?.();
                 }}
+                onNavigate={() => start()}
               >
                 {loc.label}
               </NextLink>
@@ -146,6 +153,7 @@ function DesktopLocaleDropdown({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const { start } = useNavigationProgress();
 
   const onDocumentClick = useCallback((e: MouseEvent) => {
     if (!ref.current) return;
@@ -216,6 +224,7 @@ function DesktopLocaleDropdown({
                           e.preventDefault();
                         }
                       }}
+                      onNavigate={() => start()}
                     >
                       <span className="size-1.5 rounded-full bg-white/40" />
                       {loc.label}

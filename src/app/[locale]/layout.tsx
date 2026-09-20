@@ -3,6 +3,7 @@ import FacebookPixel from "@/components/facebook-pixel";
 import GoogleAnalytics from "@/components/google-analytics";
 import LazyMotionProvider from "@/components/lazy-motion-provider";
 import Navbar from "@/components/navbar";
+import { NavigationProgressProvider } from "@/components/navigation-progress";
 import ParallaxScrollEffect from "@/components/parallax-scroll-effect";
 import { PostHogProvider } from "@/components/providers";
 import ScreenSizeIndicator from "@/components/screen-size-indicator";
@@ -69,8 +70,15 @@ export default async function RootLayout({
               <BackgroundImage />
               {process.env.NODE_ENV === "test" && <ScreenSizeIndicator />}
               <NextIntlClientProvider locale={locale}>
-                <Navbar />
-                {children}
+                {/* Inside LazyMotionProvider so the bar's `m.*` elements
+                    resolve, and inside NextIntlClientProvider because the
+                    links it tracks resolve their target with useLocale().
+                    `children` is passed through as a prop, so it stays
+                    server-rendered. */}
+                <NavigationProgressProvider>
+                  <Navbar />
+                  {children}
+                </NavigationProgressProvider>
               </NextIntlClientProvider>
             </LazyMotionProvider>
           </div>

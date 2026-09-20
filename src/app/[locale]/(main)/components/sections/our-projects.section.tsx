@@ -7,7 +7,7 @@ import GotoIcon from "@/components/goto-icon";
 import ImageContainer from "@/components/image-container";
 import Section from "@/components/section";
 import SectionLink from "@/components/ui/section-link";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 import { transitionVariants } from "@/lib/transitions";
 import { useTranslations } from "next-intl";
 

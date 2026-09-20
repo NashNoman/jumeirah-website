@@ -4,7 +4,7 @@ import instagramIcon from "@/../public/svg/instagram.svg";
 import linkedinIcon from "@/../public/svg/linkedin.svg";
 import xIcon from "@/../public/svg/x-icon.svg";
 import Logo from "@/components/ui/logo";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Globe } from "lucide-react";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 
 type CategoriesTabBarProps = {
   tabs: { label: string; value: string }[];

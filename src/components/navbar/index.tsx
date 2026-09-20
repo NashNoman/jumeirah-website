@@ -5,10 +5,18 @@ import { MobileMenu } from "@/components/navbar/mobile-menu";
 import { NavigationLinks } from "@/components/navbar/navigation-links";
 import { SocialLinks } from "@/components/navbar/social-links";
 import Logo from "@/components/ui/logo";
-import { Link, usePathname } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
+import { usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Squeeze } from "hamburger-react";
-import { useEffect, useState } from "react";
+import { usePathname as useRawPathname } from "next/navigation";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 
 const SCROLL_THRESHOLD = 110;
 
@@ -16,9 +24,20 @@ const HIDDEN_PATHS = ["/socials"];
 
 export default function Navbar() {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
+  // Distinguishes the two ways the menu closes: a deliberate tap on the
+  // hamburger keeps its collapse animation, while a close caused by the
+  // page changing underneath it has to be instant — animating a menu
+  // away on top of a page that has already switched reads as lag.
+  const [closeInstantly, setCloseInstantly] = useState(false);
   const pathname = usePathname();
   const [showNavBackground, setShowNavBackground] = useState(false);
   const hidden = HIDDEN_PATHS.includes(pathname);
+
+  // next-intl's pathname is locale-stripped, so it reports "/about" for
+  // both /about and /en/about and never fires on a locale switch. The raw
+  // one is what actually tracks "the page changed".
+  const rawPathname = useRawPathname();
+  const rawPathnameRef = useRef(rawPathname);
 
   useEffect(() => {
     if (hidden) return;
@@ -28,7 +47,6 @@ export default function Navbar() {
       } else {
         setShowNavBackground(false);
       }
-      setIsOpenMobile(false);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -36,11 +54,26 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [setIsOpenMobile, hidden]);
+  }, [hidden]);
 
   useEffect(() => {
+    if (rawPathnameRef.current === rawPathname) return;
+    rawPathnameRef.current = rawPathname;
+    setCloseInstantly(true);
     setIsOpenMobile(false);
-  }, [pathname]);
+  }, [rawPathname]);
+
+  const toggleMobileMenu: Dispatch<SetStateAction<boolean>> = (open) => {
+    setCloseInstantly(false);
+    setIsOpenMobile(open);
+  };
+
+  /** A tap that intentionally doesn't navigate (the link for the page
+   * you're already on) would otherwise leave the menu open forever. */
+  const closeMobileMenuInstantly = () => {
+    setCloseInstantly(true);
+    setIsOpenMobile(false);
+  };
 
   if (hidden) return null;
 
@@ -59,6 +92,7 @@ export default function Navbar() {
             "transition-[border-radius, backdrop-filter, background-color, border-color] mx-auto grid grid-cols-2 items-center justify-between rounded-md border border-white/0 backdrop-blur-none duration-400 max-lg:px-4 max-lg:py-1 lg:relative lg:container lg:flex lg:border-none lg:bg-transparent lg:backdrop-blur-none",
             (showNavBackground || isOpenMobile) &&
               "rounded-2xl border-white/20 bg-[#00010151] backdrop-blur",
+            closeInstantly && !isOpenMobile && "duration-0",
           )}
         >
           <Link
@@ -90,15 +124,19 @@ export default function Navbar() {
           <div className="pointer-events-auto justify-self-end lg:hidden">
             <Squeeze
               size={20}
-              toggle={setIsOpenMobile}
+              toggle={toggleMobileMenu}
               toggled={isOpenMobile}
+              // Skip the X-to-burger morph when the menu is being
+              // dismissed by a navigation rather than by the user.
+              duration={closeInstantly && !isOpenMobile ? 0 : 0.4}
               hideOutline
               rounded
             />
           </div>
           <MobileMenu
             isOpen={isOpenMobile}
-            onClose={() => setIsOpenMobile(false)}
+            instant={closeInstantly}
+            onNonNavigatingSelect={closeMobileMenuInstantly}
           />
         </div>
       </div>

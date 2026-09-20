@@ -9,7 +9,7 @@ import xIcon from "@/../public/svg/x-icon.svg";
 import ContactUsForm from "@/components/contact-us-form";
 import GlassCard from "@/components/ui/glass-card";
 import Logo from "@/components/ui/logo";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";

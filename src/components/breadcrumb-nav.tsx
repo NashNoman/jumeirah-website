@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 import { Fragment } from "react";
 
 export interface BreadcrumbNavItem {
