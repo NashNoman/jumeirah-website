@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site";
+
 interface BreadcrumbItem {
   name: string;
   url: string;
@@ -8,8 +10,6 @@ interface BreadcrumbSchemaProps {
 }
 
 export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -17,7 +17,9 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith("http") ? item.url : `${baseUrl}${item.url}`,
+      item: item.url.startsWith("http")
+        ? item.url
+        : `${siteConfig.baseUrl}${item.url}`,
     })),
   };
 

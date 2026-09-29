@@ -36,20 +36,21 @@ export default function VideoSection({
         <div className="mx-auto flex flex-col items-center gap-12 md:flex-row">
           {/* Video Thumbnail */}
           <div
-            className="group relative w-full shrink-0 cursor-pointer md:w-2/5 2xl:w-2/6"
-            onClick={() => setIsModalOpen(true)}
+            className={`group relative w-full shrink-0 md:w-2/5 2xl:w-2/6 ${videoUrl ? "cursor-pointer" : ""}`}
+            onClick={() => videoUrl && setIsModalOpen(true)}
           >
             <div className="relative aspect-square w-full overflow-hidden rounded-4xl bg-gradient-to-br from-blue-400/30 to-blue-600/30 backdrop-blur">
-              {/* Placeholder for video thumbnail - you can replace with actual thumbnail */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex size-36 items-center justify-center rounded-full bg-white/5 backdrop-blur-xs transition-all duration-500 group-hover:size-28 group-hover:bg-white/20">
-                  <div className="flex size-28 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:size-28">
-                    <div className="flex size-20 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:size-28">
-                      <PlayButtonIcon className="ml-1 size-9 transition-all duration-500 group-hover:size-10" />
+              {videoUrl && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex size-36 items-center justify-center rounded-full bg-white/5 backdrop-blur-xs transition-all duration-500 group-hover:size-28 group-hover:bg-white/20">
+                    <div className="flex size-28 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:size-28">
+                      <div className="flex size-20 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:size-28">
+                        <PlayButtonIcon className="ml-1 size-9 transition-all duration-500 group-hover:size-10" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
               <Image
                 src={projectData.videoSection.videoThumbnail}
                 alt={t(projectData.videoSection.title)}
@@ -80,12 +81,14 @@ export default function VideoSection({
               {t(description)}
             </p>
             <div className="flex gap-4 pt-4">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="cursor-pointer rounded-full border border-white/30 px-6 py-3 transition-all hover:bg-white/10"
-              >
-                {ct("watch-trailer")}
-              </button>
+              {videoUrl && (
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="cursor-pointer rounded-full border border-white/30 px-6 py-3 transition-all hover:bg-white/10"
+                >
+                  {ct("watch-trailer")}
+                </button>
+              )}
               <AppLink
                 href="/contact"
                 className="rounded-full bg-yellow-400 px-6 py-3 font-medium text-black transition-all hover:bg-yellow-500"
@@ -98,7 +101,7 @@ export default function VideoSection({
       </section>
 
       {/* Modal */}
-      {isModalOpen && (
+      {isModalOpen && videoUrl && (
         <div
           className="fixed inset-0 z-50 flex size-full items-center justify-center bg-black/90 p-4"
           onClick={() => setIsModalOpen(false)}

@@ -1,7 +1,7 @@
+import { absoluteUrl, hreflangAlternates } from "@/lib/site";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
   const locales = ["en", "ar"];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -20,25 +20,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       changeFrequency: "weekly" as const,
     },
+    {
+      path: "/projects/manarat-al-hudaydah",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const },
   ];
 
+  // No lastModified field: this site has no per-page content-change
+  // tracking, and stamping every URL with the build time on every deploy
+  // (regardless of whether that page's content actually changed) teaches
+  // crawlers to distrust the signal. Omit it rather than fake it — Google
+  // falls back to its own crawl-based freshness detection.
   routeConfig.forEach(({ path, priority, changeFrequency }) => {
     locales.forEach((locale) => {
-      const url =
-        locale === "ar" ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`;
-
       sitemapEntries.push({
-        url,
-        lastModified: new Date(),
+        url: absoluteUrl(locale, path),
         changeFrequency,
         priority,
         alternates: {
-          languages: {
-            en: `${baseUrl}/en${path}`,
-            ar: `${baseUrl}${path}`,
-          },
+          languages: hreflangAlternates(path),
         },
       });
     });

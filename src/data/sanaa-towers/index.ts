@@ -142,6 +142,12 @@ export const sanaaTowersData: ProjectData<"SanaaTowers"> = {
   projectKey: "SanaaTowers",
   title: "title",
   subtitle: "subtitle",
+  location: {
+    streetAddress: "Hadeed area, south of 50th Street",
+    addressLocality: "Sana'a",
+    addressRegion: "Sana'a Governorate",
+  },
+  dateModified: "2026-09-04",
   towersSection: towers,
   videoSection: {
     title: "videoSection.title",

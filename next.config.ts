@@ -39,6 +39,31 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  redirects: async () => {
+    return [
+      // SEO redirects for old indexed URLs
+      {
+        source: "/projects/sanaatowers",
+        destination: "/projects/sanaa-towers",
+        permanent: true,
+      },
+      {
+        source: "/projects/alhadah",
+        destination: "/projects/alhathaa-towers",
+        permanent: true,
+      },
+      {
+        source: "/en/projects/sanaatowers",
+        destination: "/en/projects/sanaa-towers",
+        permanent: true,
+      },
+      {
+        source: "/en/projects/alhadah",
+        destination: "/en/projects/alhathaa-towers",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

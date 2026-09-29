@@ -1,4 +1,4 @@
-import { easings } from "@/lib/easings";
+import { exit, glide, settle } from "@/lib/motion";
 import { m, Variants } from "motion/react";
 import { LocaleSwitcher } from "./locale-switcher";
 import { NavigationLinks } from "./navigation-links";
@@ -6,40 +6,69 @@ import { SocialLinks } from "./social-links";
 
 interface MobileMenuProps {
   isOpen: boolean;
-  onClose?: () => void;
+  /** Collapse in a single frame, with no exit animation. Set when the
+   * menu is closing because the page navigated rather than because the
+   * user tapped the hamburger. */
+  instant?: boolean;
+  /** Called for taps that deliberately don't navigate (the link for the
+   * page you're already on, or the already-active locale) — without it
+   * those would leave the menu open with nothing left to close it. */
+  onNonNavigatingSelect?: () => void;
 }
 
+const closedState = { opacity: 0, height: 0 };
+
 const navMenuVariants: Variants = {
-  open: { opacity: 1, height: "auto" },
-  closed: { opacity: 0, height: 0 },
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: { height: glide(0.55), opacity: { duration: 0.2, ease: "easeOut" } },
+  },
+  // Content fades first, then the panel folds away behind it.
+  closed: {
+    ...closedState,
+    transition: { opacity: exit(0.18), height: { ...settle(0.4), delay: 0.04 } },
+  },
+  // A separate variant rather than a `transition` prop override: Motion
+  // gives a variant's own transition priority over the prop, so the prop
+  // is silently ignored for a variant that defines one.
+  closedInstantly: {
+    ...closedState,
+    transition: { duration: 0 },
+  },
 };
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({
+  isOpen,
+  instant,
+  onNonNavigatingSelect,
+}: MobileMenuProps) {
   return (
     <m.div
       variants={navMenuVariants}
       initial="closed"
-      animate={isOpen ? "open" : "closed"}
-      transition={{ duration: 0.2, ease: easings.gentleEaseOut }}
-      className="col-span-2 space-y-5 overflow-hidden lg:hidden"
+      // The staggered children need no variant of their own: the existing
+      // overflow-hidden + height: 0 clips them in the same frame.
+      animate={isOpen ? "open" : instant ? "closedInstantly" : "closed"}
+      className="col-span-2 origin-top space-y-5 overflow-hidden lg:hidden"
     >
       <div className="space-y-1 pt-10 pb-4">
         <NavigationLinks
-          onLinkClick={() => onClose?.()}
+          onSamePageClick={onNonNavigatingSelect}
           className="flex-col items-stretch gap-2 text-center text-lg"
           linkClassName="block p-2 !text-2xl"
           animated
           isOpen={isOpen}
-          stagger={0.08}
+          stagger={0.05}
         />
       </div>
       <div className="px-4 pb-2">
         <LocaleSwitcher
           variant="mobile"
           className="justify-center gap-6"
-          onSelect={() => onClose?.()}
+          onSameLocaleSelect={onNonNavigatingSelect}
           animated
-          stagger={0.08}
+          stagger={0.04}
           isOpen={isOpen}
         />
       </div>
@@ -50,7 +79,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           anchorClassName="rounded-full p-4 transition-colors active:bg-white/20"
           animated
           isOpen={isOpen}
-          stagger={0.1}
+          stagger={0.04}
         />
       </div>
     </m.div>

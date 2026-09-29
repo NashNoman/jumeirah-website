@@ -36,18 +36,28 @@
     "x": "X",
     "facebook": "Facebook",
     "instagram": "Instagram",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "view-gallery": "View Gallery",
+    "specifications": {
+      "title": "Full Specifications",
+      "subtitle": "Every model's floor area and room-by-room layout.",
+      "area": "Area",
+      "updated": "Information updated"
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions"
+    }
   },
   "Metadata": {
-    "title": "Jumeirah Real Estate Investments | Premier Properties in Yemen",
-    "description": "Jumeirah Real Estate Investment is a leading real estate investment firm in Yemen, offering a portfolio of luxury properties and expert investment advice to help you achieve your financial goals.",
-    "keywords": "real estate Yemen, property investment Yemen, luxury apartments Yemen, Sana'a real estate, residential towers Yemen, Jumeirah Real Estate Investment, real estate development, property management Yemen",
-    "og-image-alt": "Jumeirah Real Estate Investment - Premier Properties in Yemen"
+    "title": "Apartments for Sale in Sana'a & Al-Hudaydah | Jumeirah",
+    "description": "Jumeirah builds and sells apartments in Sana'a and Al-Hudaydah: three tower projects since 2013, earthquake-resistant, with installment plans.",
+    "og-image-alt": "Jumeirah Real Estate Investment - Premier Properties in Yemen",
+    "og-slogan": "More Than Just a Living Space"
   },
   "HomePage": {
     "jumeirah-hero": "Jumeirah",
     "hero-subtitle": "Experience.. Commitment.. Innovation in the Real Estate World",
-    "hero-description": "At Jumeirah Real Estate Investment, we believe that a home is more than just a living space; it is a human and investment value that reflects a complete lifestyle<span>.</span> We strive to provide innovative and sustainable real estate solutions that meet our clients' aspirations and add real value over the long term<span>.</span>",
+    "hero-description": "At Jumeirah, a home is more than just a living space — it's where life takes shape. Since 2013, we've built and sold apartments across three tower projects in Sana'a and Al-Hudaydah, with earthquake-resistant construction and flexible installment plans.",
     "our-projects": "Our Projects"
   },
   "OurServicesSection": {
@@ -86,10 +96,12 @@
   },
   "ProjectTitles": {
     "sanaa-towers": "Sana'a Towers",
-    "alhathaa-towers": "Al-Hathaa Towers"
+    "alhathaa-towers": "Al-Hathaa Towers",
+    "manarat-al-hudaydah": "Manarat Al-Hudaydah"
   },
   "SanaaTowers": {
-    "meta-description": "The new Sana'a Towers residential project consists of two towers located in the 50 Street district of the capital, Sana'a. Tower A includes five different types of residential apartments with structurally earthquake-resistant designs, modern luxury, spacious interiors, and practical implementation, including satellite networks and individual water and electricity meters for each apartment. Tower B includes five smaller, more economical models with the same high-quality designs and a compatible residential community.",
+    "meta-title": "Sana'a Towers: Apartments for Sale on 50th Street, Sana'a",
+    "meta-description": "Two towers on 50th Street, Sana'a: twelve apartment layouts from 171-424 m², earthquake-resistant. Floor plans and payment plans on request.",
     "title": "Sana'a Towers",
     "subtitle": "A modern residential complex for an integrated lifestyle, representing a qualitative addition to the Sana'a skyline and the Yemeni real estate market.",
     "towers": {
@@ -142,37 +154,37 @@
             "description": " With a total area of 330 square meters, Model B features a private guest suite, a spacious family wing with a living room, balcony, and modern kitchen, in addition to cozy bedrooms and a luxurious master suite."
           },
           "photos": {
-            "image-1": "Apartment B photo 1",
-            "image-2": "Apartment B photo 2",
-            "image-3": "Apartment B photo 3",
-            "image-4": "Apartment B photo 4",
-            "image-5": "Apartment B photo 5",
-            "image-6": "Apartment B photo 6",
-            "image-7": "Apartment B photo 7",
-            "image-8": "Apartment B photo 8",
-            "image-9": "Apartment B photo 9",
-            "image-10": "Apartment B photo 10",
-            "image-11": "Apartment B photo 11",
-            "image-12": "Apartment B photo 12",
-            "image-13": "Apartment B photo 13",
-            "image-14": "Apartment B photo 14",
-            "image-15": "Apartment B photo 15",
-            "image-16": "Apartment B photo 16",
-            "image-17": "Apartment B photo 17",
-            "image-18": "Apartment B photo 18",
-            "image-19": "Apartment B photo 19",
-            "image-20": "Apartment B photo 20",
-            "image-21": "Apartment B photo 21",
-            "image-22": "Apartment B photo 22",
-            "image-23": "Apartment B photo 23",
-            "image-24": "Apartment B photo 24",
-            "image-25": "Apartment B photo 25",
-            "image-26": "Apartment B photo 26",
-            "image-27": "Apartment B photo 27",
-            "image-28": "Apartment B photo 28",
-            "image-29": "Apartment B photo 29",
-            "image-30": "Apartment B photo 30",
-            "image-31": "Apartment B photo 31"
+            "image-1": "Sana'a Towers, Model B interior, photo 1",
+            "image-2": "Sana'a Towers, Model B interior, photo 2",
+            "image-3": "Sana'a Towers, Model B interior, photo 3",
+            "image-4": "Sana'a Towers, Model B interior, photo 4",
+            "image-5": "Sana'a Towers, Model B interior, photo 5",
+            "image-6": "Sana'a Towers, Model B interior, photo 6",
+            "image-7": "Sana'a Towers, Model B interior, photo 7",
+            "image-8": "Sana'a Towers, Model B interior, photo 8",
+            "image-9": "Sana'a Towers, Model B interior, photo 9",
+            "image-10": "Sana'a Towers, Model B interior, photo 10",
+            "image-11": "Sana'a Towers, Model B interior, photo 11",
+            "image-12": "Sana'a Towers, Model B interior, photo 12",
+            "image-13": "Sana'a Towers, Model B interior, photo 13",
+            "image-14": "Sana'a Towers, Model B interior, photo 14",
+            "image-15": "Sana'a Towers, Model B interior, photo 15",
+            "image-16": "Sana'a Towers, Model B interior, photo 16",
+            "image-17": "Sana'a Towers, Model B interior, photo 17",
+            "image-18": "Sana'a Towers, Model B interior, photo 18",
+            "image-19": "Sana'a Towers, Model B interior, photo 19",
+            "image-20": "Sana'a Towers, Model B interior, photo 20",
+            "image-21": "Sana'a Towers, Model B interior, photo 21",
+            "image-22": "Sana'a Towers, Model B interior, photo 22",
+            "image-23": "Sana'a Towers, Model B interior, photo 23",
+            "image-24": "Sana'a Towers, Model B interior, photo 24",
+            "image-25": "Sana'a Towers, Model B interior, photo 25",
+            "image-26": "Sana'a Towers, Model B interior, photo 26",
+            "image-27": "Sana'a Towers, Model B interior, photo 27",
+            "image-28": "Sana'a Towers, Model B interior, photo 28",
+            "image-29": "Sana'a Towers, Model B interior, photo 29",
+            "image-30": "Sana'a Towers, Model B interior, photo 30",
+            "image-31": "Sana'a Towers, Model B interior, photo 31"
           },
           "details": {
             "guest-section": {
@@ -397,48 +409,48 @@
             "description": " With a total area of 171 square meters, Model L features a private guest suite, a spacious family wing with a living room, balcony, and modern kitchen, in addition to cozy bedrooms and a luxurious master suite."
           },
           "photos": {
-            "image-1": "Apartment L photo 1",
-            "image-2": "Apartment L photo 2",
-            "image-3": "Apartment L photo 3",
-            "image-4": "Apartment L photo 4",
-            "image-5": "Apartment L photo 5",
-            "image-6": "Apartment L photo 6",
-            "image-7": "Apartment L photo 7",
-            "image-8": "Apartment L photo 8",
-            "image-9": "Apartment L photo 9",
-            "image-10": "Apartment L photo 10",
-            "image-11": "Apartment L photo 11",
-            "image-12": "Apartment L photo 12",
-            "image-13": "Apartment L photo 13",
-            "image-14": "Apartment L photo 14",
-            "image-15": "Apartment L photo 15",
-            "image-16": "Apartment L photo 16",
-            "image-17": "Apartment L photo 17",
-            "image-18": "Apartment L photo 18",
-            "image-19": "Apartment L photo 19",
-            "image-20": "Apartment L photo 20",
-            "image-21": "Apartment L photo 21",
-            "image-22": "Apartment L photo 22",
-            "image-23": "Apartment L photo 23",
-            "image-24": "Apartment L photo 24",
-            "image-25": "Apartment L photo 25",
-            "image-26": "Apartment L photo 26",
-            "image-27": "Apartment L photo 27",
-            "image-28": "Apartment L photo 28",
-            "image-29": "Apartment L photo 29",
-            "image-30": "Apartment L photo 30",
-            "image-31": "Apartment L photo 31",
-            "image-32": "Apartment L photo 32",
-            "image-33": "Apartment L photo 33",
-            "image-34": "Apartment L photo 34",
-            "image-35": "Apartment L photo 35",
-            "image-36": "Apartment L photo 36",
-            "image-37": "Apartment L photo 37",
-            "image-38": "Apartment L photo 38",
-            "image-39": "Apartment L photo 39",
-            "image-40": "Apartment L photo 40",
-            "image-41": "Apartment L photo 41",
-            "image-42": "Apartment L photo 42"
+            "image-1": "Sana'a Towers, Model L interior, photo 1",
+            "image-2": "Sana'a Towers, Model L interior, photo 2",
+            "image-3": "Sana'a Towers, Model L interior, photo 3",
+            "image-4": "Sana'a Towers, Model L interior, photo 4",
+            "image-5": "Sana'a Towers, Model L interior, photo 5",
+            "image-6": "Sana'a Towers, Model L interior, photo 6",
+            "image-7": "Sana'a Towers, Model L interior, photo 7",
+            "image-8": "Sana'a Towers, Model L interior, photo 8",
+            "image-9": "Sana'a Towers, Model L interior, photo 9",
+            "image-10": "Sana'a Towers, Model L interior, photo 10",
+            "image-11": "Sana'a Towers, Model L interior, photo 11",
+            "image-12": "Sana'a Towers, Model L interior, photo 12",
+            "image-13": "Sana'a Towers, Model L interior, photo 13",
+            "image-14": "Sana'a Towers, Model L interior, photo 14",
+            "image-15": "Sana'a Towers, Model L interior, photo 15",
+            "image-16": "Sana'a Towers, Model L interior, photo 16",
+            "image-17": "Sana'a Towers, Model L interior, photo 17",
+            "image-18": "Sana'a Towers, Model L interior, photo 18",
+            "image-19": "Sana'a Towers, Model L interior, photo 19",
+            "image-20": "Sana'a Towers, Model L interior, photo 20",
+            "image-21": "Sana'a Towers, Model L interior, photo 21",
+            "image-22": "Sana'a Towers, Model L interior, photo 22",
+            "image-23": "Sana'a Towers, Model L interior, photo 23",
+            "image-24": "Sana'a Towers, Model L interior, photo 24",
+            "image-25": "Sana'a Towers, Model L interior, photo 25",
+            "image-26": "Sana'a Towers, Model L interior, photo 26",
+            "image-27": "Sana'a Towers, Model L interior, photo 27",
+            "image-28": "Sana'a Towers, Model L interior, photo 28",
+            "image-29": "Sana'a Towers, Model L interior, photo 29",
+            "image-30": "Sana'a Towers, Model L interior, photo 30",
+            "image-31": "Sana'a Towers, Model L interior, photo 31",
+            "image-32": "Sana'a Towers, Model L interior, photo 32",
+            "image-33": "Sana'a Towers, Model L interior, photo 33",
+            "image-34": "Sana'a Towers, Model L interior, photo 34",
+            "image-35": "Sana'a Towers, Model L interior, photo 35",
+            "image-36": "Sana'a Towers, Model L interior, photo 36",
+            "image-37": "Sana'a Towers, Model L interior, photo 37",
+            "image-38": "Sana'a Towers, Model L interior, photo 38",
+            "image-39": "Sana'a Towers, Model L interior, photo 39",
+            "image-40": "Sana'a Towers, Model L interior, photo 40",
+            "image-41": "Sana'a Towers, Model L interior, photo 41",
+            "image-42": "Sana'a Towers, Model L interior, photo 42"
           },
           "details": {
             "guest-section": {
@@ -766,11 +778,45 @@
         "image-2-29": "Construction photo 2-29",
         "image-2-30": "Construction photo 2-30"
       }
+    },
+    "towersSection": {
+      "title": "<span>The</span> project includes two modern residential towers"
+    },
+    "faqs": {
+      "location": {
+        "question": "Where is Sana'a Towers located?",
+        "answer": "Sana'a Towers is in the Hadeed area, south of 50th Street in Sana'a, with views over the city and the green Hadeed mountains."
+      },
+      "layouts": {
+        "question": "How many apartment layouts does Sana'a Towers have?",
+        "answer": "Twelve models across two towers, ranging from 171 to 424 square meters, each with its own room layout and floor plan."
+      },
+      "delivery": {
+        "question": "Is Sana'a Towers complete or still under construction?",
+        "answer": "Sana'a Towers is currently under construction. Contact our sales office for the latest progress and expected handover date."
+      },
+      "amenities": {
+        "question": "What amenities are included at Sana'a Towers?",
+        "answer": "A closed compound, private parking, fitness centers, a sauna, a private swimming pool, a jacuzzi, a central park, a supermarket, a nursery, and shops."
+      },
+      "earthquake": {
+        "question": "Is Sana'a Towers earthquake-resistant?",
+        "answer": "Yes. The towers are built with an earthquake-resistant structure as part of the project's core engineering."
+      },
+      "payment": {
+        "question": "Are payment plans available for Sana'a Towers?",
+        "answer": "Yes, installment payment plans are available. Contact our sales team for current pricing and payment plan options."
+      },
+      "after-sales": {
+        "question": "Does Jumeirah provide after-sales support at Sana'a Towers?",
+        "answer": "Yes, Sana'a Towers includes after-sale support for residents once they move in."
+      }
     }
   },
   "Alhathaa-Towers": {
     "title": "Al-Hathaa Residential Towers",
-    "meta-description": "Jumeirah Real Estate Investment Company has introduced a unique project that embodies its vision of developing modern residential communities that enhance the quality of life. The project features a sophisticated architectural design that provides an integrated environment that combines comfort, privacy, and security, offering residents a lifestyle filled with tranquility and peace of mind.",
+    "meta-title": "Al-Hathaa Towers, Sana'a: Completed Apartments",
+    "meta-description": "Al-Hathaa Towers is a completed gated residential compound in Sana'a: two towers, secured parking, landscaped grounds, and full after-sales maintenance.",
     "subtitle": "Jumeirah Real Estate Investment Company has introduced a unique project that embodies its vision of developing modern residential communities that enhance the quality of life. The project features a sophisticated architectural design that provides an integrated environment that combines comfort, privacy, and security, offering residents a lifestyle filled with tranquility and peace of mind.",
     "towers": {
       "tower-a": {
@@ -975,6 +1021,386 @@
       "water-project": "Water Project",
       "sanitary-system": "Sanitary System",
       "after-sale-support": "After-Sale Support"
+    },
+    "towersSection": {
+      "title": "<span>The</span> project includes two modern residential towers"
+    },
+    "faqs": {
+      "location": {
+        "question": "Where is Al-Hathaa Towers located?",
+        "answer": "Al-Hathaa Towers is on 50th Street in the Al-Hathaa area of Sana'a."
+      },
+      "layouts": {
+        "question": "How many apartment layouts does Al-Hathaa Towers have?",
+        "answer": "Five models across two towers, ranging from 210 to 740 square meters, including one duplex layout."
+      },
+      "delivery": {
+        "question": "Is Al-Hathaa Towers ready to move into?",
+        "answer": "Yes. Al-Hathaa Towers is a completed project — apartments are ready for occupancy now."
+      },
+      "amenities": {
+        "question": "What amenities are included at Al-Hathaa Towers?",
+        "answer": "Secured private parking, green landscaped space, a dedicated water project, a sanitary system, and after-sale maintenance support."
+      },
+      "earthquake": {
+        "question": "Is Al-Hathaa Towers earthquake-resistant?",
+        "answer": "Yes. The towers are built with an earthquake-resistant structure as part of the project's core engineering."
+      },
+      "payment": {
+        "question": "Are payment plans available for Al-Hathaa Towers?",
+        "answer": "Contact our sales team for current pricing and payment options for the completed units."
+      },
+      "after-sales": {
+        "question": "Does Jumeirah provide after-sales support at Al-Hathaa Towers?",
+        "answer": "Yes, full after-sale maintenance support is included for residents."
+      }
+    }
+  },
+  "ManaratAlHudaydah": {
+    "meta-description": "Sea-view apartments on 30th and 16th Streets, Al-Hudaydah. Seven layouts, earthquake-resistant, private jacuzzi, security and cleaning, private parking.",
+    "title": "Manarat Al-Hudaydah",
+    "subtitle": "Manarat Al-Hudaydah Tower — luxury living… sea views… and an opportunity to own and invest in the heart of Al-Hudaydah. One of the modern projects designed to deliver a refined residential experience that combines a prime location, sea views, quality of execution, and diverse spaces to suit various residential and investment needs.",
+    "towers": {
+      "tower-a": {
+        "title": "Tower <span>A</span>",
+        "model-a": {
+          "name": "Model <span>A</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment A layout"
+            },
+            "description": "Apartment A offers a well-distributed layout with a guest wing, a spacious family wing with two bedrooms, and a luxurious master suite overlooking the sea."
+          },
+          "details": {
+            "guest-section": {
+              "title": "Guest Wing",
+              "guest-reception-hall": "Guest Reception Hall: 1.45m x 2.30m",
+              "majlis-bathroom": "Majlis Bathroom: 1.60m x 2.15m",
+              "majlis-guest-lounge": "Majlis (Guest Lounge): 6.00m x 3.20m"
+            },
+            "family-wing-section": {
+              "title": "Family Wing",
+              "living-room": "Living Room: 5.00m x 3.20m",
+              "balcony": "Balcony: 3.20m x 2.80m",
+              "kitchen": "Kitchen: 1.55m x 3.20m",
+              "bedroom-1": "Bedroom 1: 3.70m x 3.35m",
+              "bedroom-2": "Bedroom 2: 3.20m x 3.70m",
+              "main-bathroom": "Main Bathroom: 2.20m x 1.90m"
+            },
+            "master-bedroom-suite": {
+              "title": "Master Bedroom Suite",
+              "bedroom": "Master Bedroom: 5.00m x 3.40m",
+              "bathroom": "Bathroom: 2.40m x 1.45m"
+            }
+          }
+        },
+        "model-b": {
+          "name": "Model <span>B</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment B layout"
+            },
+            "description": "Apartment B offers a cozy family wing and a master bedroom suite with direct sea views."
+          },
+          "details": {
+            "family-wing-section": {
+              "title": "Family Wing",
+              "living-room": "Living Room: 3.00m x 5.95m",
+              "balcony": "Balcony: 3.00m x 2.20m",
+              "kitchen": "Kitchen: 3.05m x 2.10m",
+              "bedroom-1": "Bedroom 1: 3.65m x 3.20m",
+              "main-bathroom": "Main Bathroom: 2.30m x 1.50m"
+            },
+            "master-bedroom-suite": {
+              "title": "Master Bedroom Suite",
+              "bedroom": "Master Bedroom: 5.00m x 3.00m",
+              "bathroom": "Bathroom: 2.30m x 1.50m"
+            }
+          }
+        },
+        "model-c": {
+          "name": "Model <span>C</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment C layout"
+            },
+            "description": "Apartment C offers a well-distributed layout with a guest wing, a spacious family wing with two bedrooms, and a luxurious master suite overlooking the sea."
+          },
+          "details": {
+            "guest-section": {
+              "title": "Guest Wing",
+              "guest-reception-hall": "Guest Reception Hall: 1.45m x 2.30m",
+              "majlis-bathroom": "Majlis Bathroom: 1.60m x 1.55m",
+              "majlis-guest-lounge": "Majlis (Guest Lounge): 6.00m x 3.20m"
+            },
+            "family-wing-section": {
+              "title": "Family Wing",
+              "living-room": "Living Room: 5.00m x 3.20m",
+              "balcony": "Balcony: 3.20m x 2.80m",
+              "kitchen": "Kitchen: 1.55m x 3.20m",
+              "bedroom-1": "Bedroom 1: 3.70m x 3.35m",
+              "bedroom-2": "Bedroom 2: 3.20m x 3.70m",
+              "main-bathroom": "Main Bathroom: 2.20m x 1.90m"
+            },
+            "master-bedroom-suite": {
+              "title": "Master Bedroom Suite",
+              "bedroom": "Master Bedroom: 5.00m x 3.40m",
+              "bathroom": "Bathroom: 2.40m x 1.45m"
+            }
+          }
+        },
+        "model-d": {
+          "name": "Model <span>D</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment D layout"
+            },
+            "description": "Apartment D features a spacious family layout with an entrance hall, a bedroom, and a master suite with sea views."
+          },
+          "details": {
+            "family-wing-section": {
+              "title": "Family Wing",
+              "entrance-hall": "Entrance Hall: 2.20m x 1.40m",
+              "living-room": "Living Room: 6.50m x 3.20m",
+              "balcony": "Balcony: 3.20m x 1.70m",
+              "kitchen": "Kitchen: 1.65m x 2.35m",
+              "bedroom-1": "Bedroom 1: 4.20m x 3.20m",
+              "main-bathroom": "Main Bathroom: 2.45m x 1.45m"
+            },
+            "master-bedroom-suite": {
+              "title": "Master Bedroom Suite",
+              "bedroom": "Master Bedroom: 4.20m x 3.40m",
+              "bathroom": "Bathroom: 2.40m x 1.45m"
+            }
+          }
+        },
+        "model-f": {
+          "name": "Model <span>F</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment F layout"
+            },
+            "description": "Apartment F features a practical layout with an entrance hall, living room, and one bedroom with sea views."
+          },
+          "details": {
+            "family-wing-section": {
+              "title": "Family Wing",
+              "entrance-hall": "Entrance Hall: 3.45m x 1.58m",
+              "living-room": "Living Room: 4.65m x 3.15m",
+              "balcony": "Balcony: 3.15m x 1.00m",
+              "kitchen": "Kitchen: 1.65m x 3.27m",
+              "bedroom-1": "Bedroom 1: 4.70m x 4.20m",
+              "main-bathroom": "Main Bathroom: 1.90m x 1.47m"
+            }
+          }
+        },
+        "model-g": {
+          "name": "Model <span>G</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment G layout"
+            },
+            "description": "Apartment G features a practical layout with an entrance hall, living room, and one bedroom with sea views."
+          },
+          "details": {
+            "family-wing-section": {
+              "title": "Family Wing",
+              "entrance-hall": "Entrance Hall: 1.58m x 2.75m",
+              "living-room": "Living Room: 5.25m x 3.15m",
+              "balcony": "Balcony: 3.15m x 1.15m",
+              "kitchen": "Kitchen: 1.65m x 3.27m",
+              "bedroom-1": "Bedroom 1: 4.70m x 4.20m",
+              "main-bathroom": "Main Bathroom: 1.90m x 1.47m"
+            }
+          }
+        },
+        "model-h": {
+          "name": "Model <span>H</span>",
+          "layout": {
+            "images": {
+              "image-1": "Apartment H layout"
+            },
+            "description": "Apartment H features a spacious family layout with an entrance hall, a bedroom, and a master suite with sea views."
+          },
+          "details": {
+            "family-wing-section": {
+              "title": "Family Wing",
+              "entrance-hall": "Entrance Hall: 1.60m x 1.35m",
+              "living-room": "Living Room: 6.50m x 3.20m",
+              "balcony": "Balcony: 3.20m x 1.70m",
+              "kitchen": "Kitchen: 1.80m x 2.30m",
+              "bedroom-1": "Bedroom 1: 3.55m x 3.20m",
+              "main-bathroom": "Main Bathroom: 2.45m x 1.45m"
+            },
+            "master-bedroom-suite": {
+              "title": "Master Bedroom Suite",
+              "bedroom": "Master Bedroom: 4.75m x 3.35m",
+              "bathroom": "Bathroom: 1.50m x 2.50m"
+            }
+          }
+        }
+      }
+    },
+    "featuresSection": {
+      "title": "Manarat Al-Hudaydah Features",
+      "subtitle": "Real estate solutions tailored to exceed your expectations.",
+      "prime-location": "Prime Location",
+      "sea-view": "Panoramic Sea View",
+      "earthquake-resistance": "Earthquake-Resistant",
+      "jacuzzi": "Private Jacuzzi",
+      "private-parking": "Private Parking",
+      "security": "Security & Cleaning Services"
+    },
+    "towersSection": {
+      "title": "<span>The</span> project includes a modern residential tower"
+    },
+    "videoSection": {
+      "title": "About Manarat Al-Hudaydah",
+      "description": "The project is located in one of the finest neighborhoods of Al-Hudaydah — the commercial district — in a vibrant location that offers residents easy access and breathtaking sea views from all sides, making the project an ideal choice for those seeking luxury living or a promising real estate investment in Al-Hudaydah."
+    },
+    "imageGallerySection": {
+      "interior-designs": "Interior Designs",
+      "exterior": "Exterior",
+      "parking": "Parking",
+      "spa-and-swimming-pool": "Spa & Swimming Pool",
+      "headings": {
+        "interior-designs": {
+          "title": "<span>Interior</span> Designs",
+          "subtitle": "Interior and layout visualizations for all apartments."
+        },
+        "exterior": {
+          "title": "<span>Exterior</span> Gallery",
+          "subtitle": "Exterior architectural renders of the tower."
+        },
+        "parking": {
+          "title": "<span>Parking</span> Gallery",
+          "subtitle": "Parking and garage visuals."
+        },
+        "spa-and-swimming-pool": {
+          "title": "<span>Spa & Swimming Pool</span> Gallery",
+          "subtitle": "Spa and swimming pool renders."
+        }
+      },
+      "images": {
+        "interior-designs": {
+          "image-1": "Interior Designs view 1",
+          "image-2": "Interior Designs view 2",
+          "image-3": "Interior Designs view 3",
+          "image-4": "Interior Designs view 4",
+          "image-5": "Interior Designs view 5",
+          "image-6": "Interior Designs view 6",
+          "image-7": "Interior Designs view 7",
+          "image-8": "Interior Designs view 8",
+          "image-9": "Interior Designs view 9",
+          "image-10": "Interior Designs view 10",
+          "image-11": "Interior Designs view 11",
+          "image-12": "Interior Designs view 12",
+          "image-13": "Interior Designs view 13",
+          "image-14": "Interior Designs view 14",
+          "image-15": "Interior Designs view 15",
+          "image-16": "Interior Designs view 16",
+          "image-17": "Interior Designs view 17",
+          "image-18": "Interior Designs view 18",
+          "image-19": "Interior Designs view 19",
+          "image-20": "Interior Designs view 20",
+          "image-21": "Interior Designs view 21",
+          "image-22": "Interior Designs view 22",
+          "image-23": "Interior Designs view 23",
+          "image-24": "Interior Designs view 24",
+          "image-25": "Interior Designs view 25",
+          "image-26": "Interior Designs view 26",
+          "image-27": "Interior Designs view 27",
+          "image-28": "Interior Designs view 28",
+          "image-29": "Interior Designs view 29",
+          "image-30": "Interior Designs view 30",
+          "image-31": "Interior Designs view 31",
+          "image-32": "Interior Designs view 32",
+          "image-33": "Interior Designs view 33",
+          "image-34": "Interior Designs view 34",
+          "image-35": "Interior Designs view 35",
+          "image-36": "Interior Designs view 36",
+          "image-37": "Interior Designs view 37",
+          "image-38": "Interior Designs view 38",
+          "image-39": "Interior Designs view 39",
+          "image-40": "Interior Designs view 40",
+          "image-41": "Interior Designs view 41",
+          "image-42": "Interior Designs view 42",
+          "image-43": "Interior Designs view 43",
+          "image-44": "Interior Designs view 44",
+          "image-45": "Interior Designs view 45",
+          "image-46": "Interior Designs view 46",
+          "image-47": "Interior Designs view 47",
+          "image-48": "Interior Designs view 48",
+          "image-49": "Interior Designs view 49",
+          "image-50": "Interior Designs view 50",
+          "image-51": "Interior Designs view 51"
+        },
+        "exterior": {
+          "image-1": "Exterior view 1",
+          "image-2": "Exterior view 2",
+          "image-3": "Exterior view 3",
+          "image-4": "Exterior view 4",
+          "image-5": "Exterior view 5",
+          "image-6": "Exterior view 6",
+          "image-7": "Exterior view 7"
+        },
+        "parking": {
+          "image-1": "Parking view 1",
+          "image-2": "Parking view 2",
+          "image-3": "Parking view 3",
+          "image-4": "Parking view 4",
+          "image-5": "Parking view 5"
+        },
+        "spa-and-swimming-pool": {
+          "image-1": "Spa & Swimming Pool view 1",
+          "image-2": "Spa & Swimming Pool view 2",
+          "image-3": "Spa & Swimming Pool view 3",
+          "image-4": "Spa & Swimming Pool view 4",
+          "image-5": "Spa & Swimming Pool view 5",
+          "image-6": "Spa & Swimming Pool view 6",
+          "image-7": "Spa & Swimming Pool view 7",
+          "image-8": "Spa & Swimming Pool view 8",
+          "image-9": "Spa & Swimming Pool view 9",
+          "image-10": "Spa & Swimming Pool view 10",
+          "image-11": "Spa & Swimming Pool view 11",
+          "image-12": "Spa & Swimming Pool view 12",
+          "image-13": "Spa & Swimming Pool view 13",
+          "image-14": "Spa & Swimming Pool view 14",
+          "image-15": "Spa & Swimming Pool view 15",
+          "image-16": "Spa & Swimming Pool view 16"
+        }
+      }
+    },
+    "meta-title": "Manarat Al-Hudaydah, Al-Hudaydah Yemen",
+    "faqs": {
+      "location": {
+        "question": "Where is Manarat Al-Hudaydah located?",
+        "answer": "Manarat Al-Hudaydah is at the intersection of 30th and 16th Streets in Al-Hudaydah, with sea views."
+      },
+      "layouts": {
+        "question": "How many apartment layouts does Manarat Al-Hudaydah have?",
+        "answer": "Seven models in one tower, each with its own layout and sea-facing orientation."
+      },
+      "delivery": {
+        "question": "Is Manarat Al-Hudaydah complete or under construction?",
+        "answer": "Manarat Al-Hudaydah is currently under construction. Contact our sales office for the latest progress and expected handover date."
+      },
+      "amenities": {
+        "question": "What amenities are included at Manarat Al-Hudaydah?",
+        "answer": "A private jacuzzi, private parking, and security and cleaning services, in a prime sea-view location."
+      },
+      "earthquake": {
+        "question": "Is Manarat Al-Hudaydah earthquake-resistant?",
+        "answer": "Yes. The tower is built with an earthquake-resistant structure as part of the project's core engineering."
+      },
+      "payment": {
+        "question": "Are payment plans available for Manarat Al-Hudaydah?",
+        "answer": "Contact our sales team for current pricing and payment plan options."
+      },
+      "after-sales": {
+        "question": "Does Jumeirah provide after-sales support at Manarat Al-Hudaydah?",
+        "answer": "Contact our sales team to learn about after-sales services for Manarat Al-Hudaydah."
+      }
     }
   },
   "FAQsSection": {
@@ -1002,6 +1428,7 @@
   },
   "ContactUs": {
     "contact-us": "Contact Us",
+    "meta-title": "Contact Jumeirah: Sana'a Sales Office | +967 778 265 522",
     "description": "We are happy to receive your inquiries, and our team is ready to provide the necessary support:",
     "first-name": "First Name",
     "last-name": "Last Name",
@@ -1010,12 +1437,14 @@
     "message": "Message",
     "send-message": "Send Message",
     "location": "Yemen, Sana'a – Political District, parallel to Hadda Street, next to Al-Tawfeer Hyper",
+    "street-address": "Political District, parallel to Hadda Street, next to Al-Tawfeer Hyper",
     "success-message": "Message sent successfully! We will get back to you soon.",
-    "error-message": "Please fill in all required fields and provide at least one contact method (email or phone)."
+    "error-message": "Please fill in all required fields and provide at least one contact method (email or phone).",
+    "meta-description": "Talk to Jumeirah's sales team in Sana'a about Sana'a Towers, Al-Hathaa Towers, and Manarat Al-Hudaydah. Call +967 778 265 522 or send a message."
   },
   "ProjectsPage": {
-    "meta-title": "Projects | Jumeirah Real Estate Investment",
-    "meta-description": "Discover our projects that reflect excellence and innovation in the world of investment and real estate. We offer a diverse range of investment and property opportunities tailored to your aspirations",
+    "meta-title": "Residential Tower Projects in Sana'a & Al-Hudaydah",
+    "meta-description": "Three tower developments by Jumeirah: Sana'a Towers, the completed Al-Hathaa Towers, and sea-view Manarat Al-Hudaydah. Floor plans and availability.",
     "title": "Jumeirah Projects",
     "sub-title": "Discover our projects that reflect excellence and innovation in the world of investment and real estate. We offer a diverse range of investment and property opportunities tailored to your aspirations",
     "all-projects": "All Projects",
@@ -1029,6 +1458,10 @@
     "alhathaa-towers": {
       "title": "Al-Hathaa Towers",
       "status": "Complete"
+    },
+    "manarat-al-hudaydah": {
+      "title": "Manarat Al-Hudaydah",
+      "status": "Under Construction"
     }
   },
   "OurPartnersSection": {
@@ -1036,8 +1469,8 @@
     "description": "We take pride in collaborating with a distinguished network of partners who share our vision for excellence, innovation, and sustainable growth."
   },
   "AboutUs": {
-    "meta-title": "About Us | Jumeirah Real Estate Investment",
-    "meta-description": "We provide innovative, sustainable real estate solutions aligned with the latest developments in property development. At Jumeirah, we strive to enhance the quality of life for residents and investors by developing residential and commercial projects that meet the highest standards of quality—delivering comfort of living, environmental safety, and a private, tailored experience.",
+    "meta-title": "About Jumeirah: Yemeni Property Developer Since 2013",
+    "meta-description": "Jumeirah Real Estate Investment and Contracting Ltd. has developed residential towers in Sana'a and Al-Hudaydah since 2013. Who we are and what we build.",
     "title": "About Us",
     "subtitle": "We provide innovative, sustainable real estate solutions aligned with the latest developments in property development. At Jumeirah, we strive to enhance the quality of life for residents and investors by developing residential and commercial projects that meet the highest standards of quality—delivering comfort of living, environmental safety, and a private, tailored experience.",
     "company-history": "Company History",
@@ -1063,6 +1496,8 @@
   "SocialsPage": {
     "instagram": "Instagram",
     "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "x": "X",
     "email": "Email",
     "website": "Website"
   }

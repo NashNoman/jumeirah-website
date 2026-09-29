@@ -1,32 +1,63 @@
 import emailIcon from "@/../public/svg/email-icon.svg";
 import facebookIcon from "@/../public/svg/facebook.svg";
 import instagramIcon from "@/../public/svg/instagram.svg";
+import linkedinIcon from "@/../public/svg/linkedin.svg";
+import xIcon from "@/../public/svg/x-icon.svg";
 import Logo from "@/components/ui/logo";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Globe } from "lucide-react";
+import { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import Image, { StaticImageData } from "next/image";
+
+// A link-in-bio page for social profiles has no unique content of its own —
+// keep it reachable but out of the index so it doesn't compete with the
+// homepage for the site's brand-name query.
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+}
+
+// siteConfig.sameAs order: Facebook, Instagram, LinkedIn, X (see src/lib/site.ts).
+// Sourcing hrefs from siteConfig.sameAs keeps the profiles linked here in
+// sync with the profiles claimed by the sameAs JSON-LD structured data.
+const [facebookUrl, instagramUrl, linkedinUrl, xUrl] = siteConfig.sameAs;
 
 const socials = [
   {
     key: "instagram",
-    href: "https://www.instagram.com/jumeirahyemen",
+    href: instagramUrl,
     icon: instagramIcon,
   },
   {
     key: "facebook",
-    href: "https://www.facebook.com/share/1MDft5MQCh/",
+    href: facebookUrl,
     icon: facebookIcon,
   },
   {
+    key: "linkedin",
+    href: linkedinUrl,
+    icon: linkedinIcon,
+  },
+  {
+    key: "x",
+    href: xUrl,
+    icon: xIcon,
+  },
+  {
     key: "email",
-    href: "mailto:info@jumeirahye.com",
+    href: `mailto:${siteConfig.email}`,
     icon: emailIcon,
   },
   {
     key: "website",
-    href: "https://jumeirahye.com/",
+    href: siteConfig.baseUrl,
     icon: null,
   },
 ] as const;

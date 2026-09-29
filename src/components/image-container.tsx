@@ -1,3 +1,4 @@
+import SettleImage from "@/components/settle-image";
 import { cn } from "@/lib/utils";
 import Image, { StaticImageData } from "next/image";
 import { PropsWithChildren } from "react";
@@ -10,6 +11,8 @@ type ImageContainerProps = {
   alt?: string;
   fetchPriority?: "high" | "low";
   sizes?: string;
+  /** Let the photo settle into the frame when the surrounding card reveals. */
+  settle?: boolean;
 } & PropsWithChildren;
 
 export default function ImageContainer({
@@ -20,8 +23,11 @@ export default function ImageContainer({
   alt = "",
   fetchPriority,
   sizes,
+  settle = false,
   children,
 }: ImageContainerProps) {
+  const Img = settle ? SettleImage : Image;
+
   return (
     <Tag
       className={cn(
@@ -30,7 +36,7 @@ export default function ImageContainer({
       )}
     >
       <figure className="h-full">
-        <Image
+        <Img
           src={src}
           alt={alt}
           aria-hidden

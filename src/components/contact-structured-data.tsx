@@ -1,50 +1,39 @@
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import { useTranslations } from "next-intl";
 
 export default function ContactStructuredData({ locale }: { locale: string }) {
   const t = useTranslations("ContactUs");
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-
   // LocalBusiness Schema with ContactPoint
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    name: "Jumeirah Real Estate Investment",
-    image: `${baseUrl}/images/logo.png`,
-    "@id": baseUrl,
-    url: baseUrl,
-    telephone: "+967778265522",
+    name: siteConfig.name,
+    image: siteConfig.logo,
+    "@id": siteConfig.organizationId,
+    url: siteConfig.baseUrl,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    areaServed: siteConfig.address.country,
     address: {
       "@type": "PostalAddress",
-      streetAddress: t("location"),
-      addressLocality: "Sana'a",
-      addressRegion: "Sana'a Governorate",
-      addressCountry: "YE",
+      streetAddress: t("street-address"),
+      addressLocality: siteConfig.address.locality,
+      addressRegion: siteConfig.address.region,
+      addressCountry: siteConfig.address.country,
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 15.3694,
-      longitude: 44.191,
+      latitude: siteConfig.geo.latitude,
+      longitude: siteConfig.geo.longitude,
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Saturday",
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-      ],
-      opens: "08:00",
-      closes: "17:00",
+      dayOfWeek: siteConfig.openingHours.dayOfWeek,
+      opens: siteConfig.openingHours.opens,
+      closes: siteConfig.openingHours.closes,
     },
-    sameAs: [
-      "https://www.facebook.com/JumeirahYemen",
-      "https://www.instagram.com/JumeirahYemen",
-      "https://www.linkedin.com/company/jumeirahye",
-      "https://www.x.com/JumeirahYemen",
-    ],
+    sameAs: siteConfig.sameAs,
   };
 
   // ContactPage Schema
@@ -53,13 +42,14 @@ export default function ContactStructuredData({ locale }: { locale: string }) {
     "@type": "ContactPage",
     name: t("contact-us"),
     description: t("description"),
-    url: `${baseUrl}/${locale}/contact`,
+    url: absoluteUrl(locale, "/contact"),
     mainEntity: {
       "@type": "RealEstateAgent",
-      name: "Jumeirah Real Estate Investment",
+      "@id": siteConfig.organizationId,
+      name: siteConfig.name,
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+967778265522",
+        telephone: siteConfig.phone,
         contactType: "Customer Service",
         availableLanguage: ["English", "Arabic"],
         areaServed: "YE",

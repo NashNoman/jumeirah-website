@@ -4,6 +4,7 @@ import { ModelData } from "@/data/types";
 
 export const modelZ: ModelData<"Alhathaa-Towers"> = {
   name: "towers.tower-b.model-z.name",
+  areaSqm: 245,
   layout: {
     description: "towers.tower-b.model-z.layout.description",
     images: [

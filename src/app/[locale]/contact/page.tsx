@@ -1,6 +1,7 @@
 import BreadcrumbSchema from "@/components/breadcrumb-schema";
 import ContactStructuredData from "@/components/contact-structured-data";
 import ContactUsSection from "@/components/contact-us-section";
+import { absoluteUrl, hreflangAlternates } from "@/lib/site";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -17,8 +18,8 @@ export default async function ContactPage({
       <ContactStructuredData locale={locale} />
       <BreadcrumbSchema
         items={[
-          { name: t("home"), url: `/${locale}` },
-          { name: t("contact-us"), url: `/${locale}/contact` },
+          { name: t("home"), url: absoluteUrl(locale) },
+          { name: t("contact-us"), url: absoluteUrl(locale, "/contact") },
         ]}
       />
       <main className="bg-transparent pt-20 lg:pt-13">
@@ -37,26 +38,25 @@ export async function generateMetadata({
   const t = await getTranslations("ContactUs");
   const { locale } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-  const currentUrl =
-    locale === "ar" ? `${baseUrl}/contact` : `${baseUrl}/${locale}/contact`;
+  const currentUrl = absoluteUrl(locale, "/contact");
 
   return {
-    title: `${t("contact-us")} | Jumeirah Real Estate Investment`,
-    description: t("description"),
+    // absolute: this title already ends in the sales-office phone number —
+    // the highest-value differentiator for a contact page — so it opts out
+    // of the root layout's title.template rather than pushing that number
+    // further from the SERP truncation boundary.
+    title: { absolute: t("meta-title") },
+    description: t("meta-description"),
     alternates: {
       canonical: currentUrl,
-      languages: {
-        en: `${baseUrl}/en/contact`,
-        ar: `${baseUrl}/contact`,
-      },
+      languages: hreflangAlternates("/contact"),
     },
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_YE" : "en_US",
       url: currentUrl,
-      title: `${t("contact-us")} | Jumeirah Real Estate Investment`,
-      description: t("description"),
+      title: t("meta-title"),
+      description: t("meta-description"),
       siteName: "Jumeirah Real Estate Investment",
     },
   };

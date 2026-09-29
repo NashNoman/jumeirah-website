@@ -21,10 +21,12 @@ export default function ImageGallerySection({
 }) {
   const locale = useLocale();
   const t = useTranslations<Project>(projectData.projectKey);
+  const ct = useTranslations("Common");
   const { imageGallerySection: imgs } = projectData;
 
   const initialGallery = useMemo(() => imgs?.[0], [imgs]);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const shouldScrollTabs = (imgs?.length ?? 0) > 2;
   const currentGallery = imgs?.[activeGalleryIndex];
   const [activeImage, setActiveImage] = useState(
     () => initialGallery?.images[0],
@@ -157,36 +159,60 @@ export default function ImageGallerySection({
 
   return (
     <section className="relative overflow-hidden py-10">
-      {/* Background Preview */}
+      {/* Background Preview — decorative, below the fold; never the LCP
+          candidate, so it must not compete with the real one for priority. */}
       <Image
         src={activeImage.src}
         alt={t(activeImage.alt)}
         fill
         sizes="100vw"
         className="object-cover opacity-40 transition-all duration-700"
-        priority
       />
       <div className="from-background to-background/20 via-background/80 absolute inset-0 bg-linear-to-t" />
 
       {/* Gallery Tabs */}
       <div className="container">
         <div className="relative z-40 mx-auto mb-8 rounded-2xl bg-black/60 p-2 backdrop-blur-lg lg:mb-12 lg:inline-block">
-          <div className="flex gap-4">
-            {imgs!.map((gallery, index) => (
-              <button
-                key={gallery.title}
-                onClick={() => handleGalleryChange(index)}
-                className={cn(
-                  "z-10 flex-1 shrink-0 cursor-pointer rounded-xl p-2 font-bold transition-all lg:whitespace-nowrap",
-                  activeGalleryIndex === index
-                    ? "bg-[#616161] text-white"
-                    : "text-[#D9D9D9] hover:bg-white/10 hover:text-white",
-                )}
-              >
-                {t(gallery.title)}
-              </button>
-            ))}
-          </div>
+          {shouldScrollTabs ? (
+            <div
+              className="fade-x w-full lg:px-3 lg:mask-none"
+              style={{ "--fade-start": "3%", "--fade-end": "97%" } as React.CSSProperties}
+            >
+              <div className="flex w-full gap-2 overflow-x-auto px-2 no-scrollbar lg:gap-4 lg:px-0">
+                {imgs!.map((gallery, index) => (
+                  <button
+                    key={gallery.title}
+                    onClick={() => handleGalleryChange(index)}
+                    className={cn(
+                      "z-10 shrink-0 cursor-pointer whitespace-nowrap rounded-xl px-4 py-2 font-bold transition-all",
+                      activeGalleryIndex === index
+                        ? "bg-[#616161] text-white"
+                        : "text-[#D9D9D9] hover:bg-white/10 hover:text-white",
+                    )}
+                  >
+                    {t(gallery.title)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="flex w-full gap-4">
+              {imgs!.map((gallery, index) => (
+                <button
+                  key={gallery.title}
+                  onClick={() => handleGalleryChange(index)}
+                  className={cn(
+                    "z-10 flex-1 shrink-0 cursor-pointer rounded-xl px-4 py-2 font-bold transition-all lg:whitespace-nowrap",
+                    activeGalleryIndex === index
+                      ? "bg-[#616161] text-white"
+                      : "text-[#D9D9D9] hover:bg-white/10 hover:text-white",
+                  )}
+                >
+                  {t(gallery.title)}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -194,11 +220,11 @@ export default function ImageGallerySection({
         {/* Gallery Header */}
         <div className="lg:start from-background to-background/0 via-background/5 z-30 lg:pointer-events-none lg:absolute lg:flex lg:size-full lg:items-center lg:bg-linear-to-r lg:pt-28 lg:rtl:bg-linear-to-l">
           <div className="container mx-3 space-y-2 text-center lg:text-start">
-            <h3 className="text-3xl font-bold lg:max-w-xs lg:text-4xl lg:leading-tight">
+            <h2 className="text-3xl font-bold lg:max-w-xs lg:text-4xl lg:leading-tight">
               {t.rich(currentGallery.headingTitle, {
                 span: (s) => <span className="text-primary">{s}</span>,
               })}
-            </h3>
+            </h2>
             <p className="text-[#a0a0a0] lg:max-w-sm lg:text-lg">
               {t(currentGallery.headingSubtitle)}
             </p>
@@ -206,7 +232,7 @@ export default function ImageGallerySection({
               onClick={() => setIsModalOpen(true)}
               className="bg-primary pointer-events-auto mt-6 cursor-pointer rounded-full px-6 py-2 text-lg font-bold text-black transition-all hover:brightness-75 active:scale-95 active:brightness-75 lg:mt-8"
             >
-              View Gallery
+              {ct("view-gallery")}
             </button>
           </div>
         </div>
@@ -229,7 +255,6 @@ export default function ImageGallerySection({
                     // height={427}
                     placeholder="blur"
                     loading={index < 3 ? "eager" : "lazy"}
-                    priority={index < 3}
                   />
                 </div>
               </div>

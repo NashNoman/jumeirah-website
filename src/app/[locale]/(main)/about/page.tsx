@@ -10,6 +10,12 @@ import BreadcrumbSchema from "@/components/breadcrumb-schema";
 import ImageContainer from "@/components/image-container";
 import PageHeader from "@/components/page-header";
 import Section from "@/components/section";
+import {
+  absoluteUrl,
+  hreflangAlternates,
+  siteConfig,
+  withBrandSuffix,
+} from "@/lib/site";
 import { Metadata } from "next";
 import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -58,8 +64,8 @@ export default function AboutUsPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: homeT("home"), url: `/${locale}` },
-          { name: homeT("about"), url: `/${locale}/about` },
+          { name: homeT("home"), url: absoluteUrl(locale) },
+          { name: homeT("about"), url: absoluteUrl(locale, "/about") },
         ]}
       />
       <PageHeader title={t("title")} subTitle={t("subtitle")}>
@@ -163,30 +169,25 @@ export async function generateMetadata({
   const t = await getTranslations("AboutUs");
   const { locale } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-  const currentUrl =
-    locale === "ar" ? `${baseUrl}/about` : `${baseUrl}/${locale}/about`;
+  const currentUrl = absoluteUrl(locale, "/about");
 
   return {
     title: t("meta-title"),
     description: t("meta-description"),
     alternates: {
       canonical: currentUrl,
-      languages: {
-        en: `${baseUrl}/en/about`,
-        ar: `${baseUrl}/about`,
-      },
+      languages: hreflangAlternates("/about"),
     },
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_YE" : "en_US",
       url: currentUrl,
-      title: t("meta-title"),
+      title: withBrandSuffix(locale, t("meta-title")),
       description: t("meta-description"),
       siteName: "Jumeirah Real Estate Investment",
       images: [
         {
-          url: `${baseUrl}/images/company-history-image.webp`,
+          url: `${siteConfig.baseUrl}/images/company-history-image.webp`,
           width: 1080,
           height: 1350,
           alt: t("meta-title"),

@@ -2,6 +2,12 @@ import ProjectsSection from "@/app/[locale]/(main)/projects/components/sections/
 import AppLink from "@/components/app-link";
 import BreadcrumbSchema from "@/components/breadcrumb-schema";
 import PageHeader from "@/components/page-header";
+import {
+  absoluteUrl,
+  hreflangAlternates,
+  siteConfig,
+  withBrandSuffix,
+} from "@/lib/site";
 import { Metadata } from "next";
 import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -16,15 +22,12 @@ export default function ProjectsPage() {
     <>
       <BreadcrumbSchema
         items={[
-          { name: homeT("home"), url: `/${locale}` },
-          { name: homeT("projects"), url: `/${locale}/projects` },
+          { name: homeT("home"), url: absoluteUrl(locale) },
+          { name: homeT("projects"), url: absoluteUrl(locale, "/projects") },
         ]}
       />
       <PageHeader title={t("title")} subTitle={t("sub-title")}>
         <div className="flex items-center justify-center gap-4 text-xs font-semibold md:gap-6 md:text-sm lg:text-base">
-          <AppLink variant="outline" href="#" className="lg:py-2">
-            {ct("our-services")}
-          </AppLink>
           <AppLink href="/contact" className="lg:py-2">
             {ct("contact-us")}
           </AppLink>
@@ -46,39 +49,40 @@ export async function generateMetadata({
   const t = await getTranslations("ProjectsPage");
   const { locale } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-  const currentUrl =
-    locale === "ar" ? `${baseUrl}/projects` : `${baseUrl}/${locale}/projects`;
+  const currentUrl = absoluteUrl(locale, "/projects");
 
   return {
     title: t("meta-title"),
     description: t("meta-description"),
     alternates: {
       canonical: currentUrl,
-      languages: {
-        en: `${baseUrl}/en/projects`,
-        ar: `${baseUrl}/projects`,
-      },
+      languages: hreflangAlternates("/projects"),
     },
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_YE" : "en_US",
       url: currentUrl,
-      title: t("meta-title"),
+      title: withBrandSuffix(locale, t("meta-title")),
       description: t("meta-description"),
       siteName: "Jumeirah Real Estate Investment",
       images: [
         {
-          url: `${baseUrl}/images/sanaa-towers.webp`,
+          url: `${siteConfig.baseUrl}/images/sanaa-towers.webp`,
           width: 1080,
           height: 1350,
           alt: t("sanaa-towers.title"),
         },
         {
-          url: `${baseUrl}/images/alhathaa-towers.webp`,
+          url: `${siteConfig.baseUrl}/images/alhathaa-towers.webp`,
           width: 1080,
           height: 1350,
           alt: t("alhathaa-towers.title"),
+        },
+        {
+          url: `${siteConfig.baseUrl}/images/manarat-al-hudaydah.webp`,
+          width: 1080,
+          height: 1350,
+          alt: t("manarat-al-hudaydah.title"),
         },
       ],
     },

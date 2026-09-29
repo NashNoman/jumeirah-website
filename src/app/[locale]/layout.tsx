@@ -3,12 +3,19 @@ import FacebookPixel from "@/components/facebook-pixel";
 import GoogleAnalytics from "@/components/google-analytics";
 import LazyMotionProvider from "@/components/lazy-motion-provider";
 import Navbar from "@/components/navbar";
+import { NavigationProgressProvider } from "@/components/navigation-progress";
 import ParallaxScrollEffect from "@/components/parallax-scroll-effect";
 import { PostHogProvider } from "@/components/providers";
 import ScreenSizeIndicator from "@/components/screen-size-indicator";
 import StructuredData from "@/components/structured-data";
 import { aeonikFont, montserratArabicFont } from "@/fonts";
 import { routing } from "@/i18n/routing";
+import {
+  absoluteUrl,
+  hreflangAlternates,
+  siteConfig,
+  withBrandSuffix,
+} from "@/lib/site";
 import { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -63,8 +70,15 @@ export default async function RootLayout({
               <BackgroundImage />
               {process.env.NODE_ENV === "test" && <ScreenSizeIndicator />}
               <NextIntlClientProvider locale={locale}>
-                <Navbar />
-                {children}
+                {/* Inside LazyMotionProvider so the bar's `m.*` elements
+                    resolve, and inside NextIntlClientProvider because the
+                    links it tracks resolve their target with useLocale().
+                    `children` is passed through as a prop, so it stays
+                    server-rendered. */}
+                <NavigationProgressProvider>
+                  <Navbar />
+                  {children}
+                </NavigationProgressProvider>
               </NextIntlClientProvider>
             </LazyMotionProvider>
           </div>
@@ -83,10 +97,10 @@ function BackgroundImage() {
       >
         <Image
           src={heroBackgroundImage}
-          className="-z-50 h-full w-full object-cover object-top-right md:object-top ltr:rotate-y-180 rtl:max-md:object-top-left"
+          className="motion-safe:animate-hero-settle -z-50 h-full w-full object-cover object-top-right md:object-top ltr:rotate-y-180 rtl:max-md:object-top-left"
           alt="Jumeirah Real Estate Investment luxury residential towers in Yemen"
           placeholder="blur"
-          sizes="(max-width: 768px) 100vh, (max-width: 1200px) 100vw, 100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           priority
           fetchPriority="high"
           fill
@@ -110,13 +124,18 @@ export async function generateMetadata({
   const t = await getTranslations("Metadata");
   const { locale } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-  const currentUrl = locale === "ar" ? baseUrl : `${baseUrl}/${locale}`;
+  const currentUrl = absoluteUrl(locale);
 
   return {
-    title: t("title"),
+    // Child routes set a plain string `title` (never `{ absolute }`), so
+    // this template is the single place the brand suffix is written —
+    // previously every page hand-appended its own variant ("| Jumeirah",
+    // "| جميرا", "| جميرا للاستثمار العقاري", or nothing at all).
+    title: {
+      default: t("title"),
+      template: withBrandSuffix(locale, "%s"),
+    },
     description: t("description"),
-    keywords: t("keywords"),
     authors: [{ name: "Jumeirah Real Estate Investment" }],
     creator: "Jumeirah Real Estate Investment",
     publisher: "Jumeirah Real Estate Investment",
@@ -133,10 +152,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: currentUrl,
-      languages: {
-        en: `${baseUrl}/en`,
-        ar: baseUrl,
-      },
+      languages: hreflangAlternates(),
     },
     openGraph: {
       type: "website",
@@ -147,7 +163,7 @@ export async function generateMetadata({
       siteName: "Jumeirah Real Estate Investment",
       images: [
         {
-          url: `${baseUrl}/images/og-image.jpg`,
+          url: `${siteConfig.baseUrl}/images/${locale === "ar" ? "og-image-ar" : "og-image"}.png`,
           width: 1200,
           height: 630,
           alt: t("og-image-alt"),
@@ -158,8 +174,10 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [`${baseUrl}/images/twitter-image.jpg`],
-      creator: "@jumeirah_rei",
+      images: [
+        `${siteConfig.baseUrl}/images/${locale === "ar" ? "og-image-ar" : "og-image"}.png`,
+      ],
+      creator: "@JumeirahYemen",
     },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,

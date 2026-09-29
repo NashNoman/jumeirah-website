@@ -22,6 +22,59 @@
   --fade-end: 100%;
 }
 
+/* Motion curves — the CSS side of src/lib/motion.ts; keep the two in sync. */
+@theme {
+  --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-settle: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* The hero photo settling into place on first paint. CSS rather than
+     Motion so it starts before hydration; animates the standalone `scale`
+     property, which composes with any transform on the same element.
+     `backwards`, not `both`: once finished the animation must let go of
+     the element entirely, or the browser keeps it on its own compositor
+     layer and resamples the photo slightly differently at rest. */
+  --animate-hero-settle: hero-settle 2.4s var(--ease-glide) backwards;
+
+  @keyframes hero-settle {
+    from {
+      scale: 1.12;
+    }
+  }
+}
+
+/* A fill that grows from the center of a round button. Painted as a
+   background image so it sits under the border exactly like a
+   background-color does, which keeps the open state identical to a plain
+   `bg-primary`. */
+@property --fill-radius {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@utility fill-grow {
+  background-image: radial-gradient(
+    circle,
+    var(--color-primary) var(--fill-radius),
+    transparent var(--fill-radius)
+  );
+  transition-property: --fill-radius, color;
+  transition-duration: 0.45s;
+  transition-timing-function: var(--ease-glide);
+}
+
+@utility fill-grow-full {
+  --fill-radius: 100%;
+}
+
+/* Clip for mask reveals: the moving text is hidden below its own line box,
+   while the negative insets leave room for ascenders, descenders and
+   Arabic diacritics so nothing is cropped at rest. No layout effect. */
+@utility reveal-mask {
+  clip-path: inset(-0.6em -0.3em -0.3em -0.3em);
+}
+
 @utility bg-glass-gradient-to-s {
   @apply bg-[linear-gradient(271deg,rgba(255,255,255,0.13)_-16.65%,rgba(153,153,153,0.13)_119.21%)] backdrop-blur-lg rtl:bg-[linear-gradient(89deg,rgba(255,255,255,0.13)_-16.65%,rgba(153,153,153,0.13)_119.21%)];
 }

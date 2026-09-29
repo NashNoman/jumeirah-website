@@ -1,5 +1,5 @@
 import GotoIcon from "@/components/goto-icon";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
 import Image, { StaticImageData } from "next/image";
 
 type CategoryProjectItemProps = {

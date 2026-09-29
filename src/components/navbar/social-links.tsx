@@ -2,7 +2,7 @@ import facebookLogo from "@/../public/svg/facebook.svg";
 import instagramLogo from "@/../public/svg/instagram.svg";
 import linkedInLogo from "@/../public/svg/linkedin.svg";
 import xLogo from "@/../public/svg/x-icon.svg";
-import { luxuryPresets } from "@/lib/luxury-presets";
+import { glide } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { m, Variants } from "motion/react";
 import { useTranslations } from "next-intl";
@@ -46,30 +46,18 @@ export function SocialLinks({
     },
   ] as const;
 
-  const baseContainer = luxuryPresets.cascade.container;
-  const baseItem = luxuryPresets.cascade.item;
-
+  // Fades in after the navigation links have started rising.
   const listVariants: Variants = {
-    hidden: baseContainer.hidden || { opacity: 0 },
-    visible: {
-      ...(baseContainer.visible as object),
-      transition: {
-        ...(baseContainer.visible?.transition as object),
-        staggerChildren: stagger,
-        delayChildren: 0.26,
-      },
-    },
+    hidden: {},
+    visible: { transition: { staggerChildren: stagger, delayChildren: 0.32 } },
   };
 
   const itemVariants: Variants = {
-    hidden: { ...(baseItem.hidden as object), y: 8 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
-      ...(baseItem.visible as object),
+      opacity: 1,
       y: 0,
-      transition: {
-        ...(baseItem.visible?.transition as object),
-        duration: 0.4,
-      },
+      transition: { y: glide(0.6), opacity: { duration: 0.45, ease: "easeOut" } },
     },
   };
 

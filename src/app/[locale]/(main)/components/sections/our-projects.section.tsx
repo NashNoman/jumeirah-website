@@ -1,4 +1,5 @@
 import alHathaaTowersImage from "@/../public/images/alhathaa-towers.webp";
+import manaratAlHudaydahImage from "@/../public/images/manarat-al-hudaydah.webp";
 import sanaaTowersImage from "@/../public/images/sanaa-towers.webp";
 import { AnimatedGroup } from "@/components/animated-group";
 import Carousel from "@/components/carousel";
@@ -6,11 +7,17 @@ import GotoIcon from "@/components/goto-icon";
 import ImageContainer from "@/components/image-container";
 import Section from "@/components/section";
 import SectionLink from "@/components/ui/section-link";
-import { Link } from "@/i18n/navigation";
-import { transitionVariants } from "@/lib/transitions";
+import Link from "@/components/progress-link";
 import { useTranslations } from "next-intl";
 
 const projects = [
+  {
+    title: "manarat-al-hudaydah",
+    titleNoSpan: "manarat-al-hudaydah-no-span",
+    status: "under-construction",
+    image: manaratAlHudaydahImage,
+    href: "/projects/manarat-al-hudaydah",
+  },
   {
     title: "sanaa-towers",
     titleNoSpan: "sanaa-towers-no-span",
@@ -56,20 +63,21 @@ export default function OurProjectsSection() {
           })}
         </SectionLink>
       )}
-      enableAnimation
     >
       <Carousel options={carouselOptions} className="w-full md:px-4">
         <AnimatedGroup
-          variants={transitionVariants}
+          preset="card"
           className="flex gap-4 md:justify-center md:gap-6 lg:gap-12"
-          childrenClassName="embla__slide md:mx-2 flex-[0_0_90%] sm:flex-[0_0_80%] md:flex-[0_0_47%] lg:flex-[0_0_40%] first:[&_h3]:from-[1.5ch] first:[&_h3]:to-[1.5ch] not-first:[&_h3]:text-foreground not-first:[&_h3]:first-letter-primary"
-          inherit
+          childrenClassName="embla__slide md:mx-2 flex-[0_0_90%] sm:flex-[0_0_80%] md:flex-[0_0_calc((100%-3rem)/3)] lg:flex-[0_0_calc((100%-6rem)/3)] first:[&_h3]:from-[1.5ch] first:[&_h3]:to-[1.5ch] not-first:[&_h3]:text-foreground not-first:[&_h3]:first-letter-primary"
         >
           {projects.map((p) => (
             <ImageContainer
               key={p.title}
               src={p.image}
-              className="w-full cursor-pointer overflow-hidden rounded-[3rem] duration-300 ease-in-out active:scale-95 active:brightness-80 lg:rounded-4xl [&_figure>div]:opacity-20 [&_figure>div]:transition-opacity hover:[&_figure>div]:opacity-20 lg:[&_figure>div]:opacity-60"
+              alt={projectsT(p.title)}
+              settle
+              className="group ease-glide w-full cursor-pointer overflow-hidden rounded-[3rem] transition-[scale,filter] duration-500 active:scale-[0.97] active:brightness-80 active:duration-120 active:ease-out lg:rounded-4xl [&_figure>div]:opacity-20 [&_figure>div]:transition-opacity [&_figure>div]:duration-600 [&_figure>div]:ease-glide hover:[&_figure>div]:opacity-20 lg:[&_figure>div]:opacity-60"
+              imageClassName="transition-[scale] duration-1200 ease-glide motion-safe:group-hover:scale-[1.06]"
               sizes="(max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 47vw, (max-width: 1536px) 40vw, 28vw"
             >
               <Link
@@ -81,7 +89,7 @@ export default function OurProjectsSection() {
                 </p>
                 <div className="flex items-center justify-center gap-2">
                   <GotoIcon
-                    className="md:size-10 md:p-1.5"
+                    className="ease-glide transition-[translate,background-color] duration-600 group-hover:bg-black/45 md:size-10 md:p-1.5 motion-safe:group-hover:translate-x-[3px] motion-safe:rtl:group-hover:-translate-x-[3px]"
                     alt={projectsT(p.title)}
                   />
                   <div className="border-gradient-to-e border-gradient-to-neutral-500/60 grow rounded-2xl bg-linear-to-r from-[#1A1A1A] to-[#1A1A1A]/0 p-2 text-center md:text-lg rtl:bg-linear-to-l">

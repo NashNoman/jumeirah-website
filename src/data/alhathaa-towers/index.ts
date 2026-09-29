@@ -12,6 +12,12 @@ export const alhathaaTowersData: ProjectData<"Alhathaa-Towers"> = {
   projectKey: "Alhathaa-Towers",
   title: "title",
   subtitle: "subtitle",
+  location: {
+    streetAddress: "50th Street, Al-Hathaa area",
+    addressLocality: "Sana'a",
+    addressRegion: "Sana'a Governorate",
+  },
+  dateModified: "2026-09-04",
   towersSection: towers,
   videoSection: {
     title: "videoSection.title",

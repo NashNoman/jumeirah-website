@@ -90,9 +90,9 @@ export default function ContactUsFrom({ className }: { className?: string }) {
         <h3 className="first-letter-primary-or-clip from-[0.5ch] to-[0.5ch] pb-1 font-serif text-3xl md:text-4xl">
           {t("contact-us")}
         </h3>
-        <h4 className="mt-2 text-sm font-light text-[#9C9C9C] md:text-base lg:mt-4">
+        <p className="mt-2 text-sm font-light text-[#9C9C9C] md:text-base lg:mt-4">
           {t("description")}
-        </h4>
+        </p>
       </div>
       <form
         onSubmit={handleSubmit}

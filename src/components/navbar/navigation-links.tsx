@@ -1,11 +1,14 @@
-import { Link, usePathname } from "@/i18n/navigation";
-import { luxuryPresets } from "@/lib/luxury-presets";
+import Link from "@/components/progress-link";
+import { usePathname } from "@/i18n/navigation";
+import { reveal } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { m, Variants } from "motion/react";
 import { useTranslations } from "next-intl";
 
 interface NavigationLinksProps {
-  onLinkClick?: () => void;
+  /** Fired only when the tap doesn't navigate, i.e. the link points at
+   * the page already being viewed. */
+  onSamePageClick?: () => void;
   className?: string;
   liClassName?: string;
   linkClassName?: string;
@@ -23,7 +26,7 @@ const links = [
 ] as const;
 
 export function NavigationLinks({
-  onLinkClick,
+  onSamePageClick,
   className,
   liClassName,
   linkClassName,
@@ -40,41 +43,20 @@ export function NavigationLinks({
   };
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
-    if (pathname === href) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    onLinkClick?.();
+    if (pathname !== href) return;
+    // Already here: scroll back to the top instead of navigating. Since
+    // no navigation follows, nothing else would close the mobile menu.
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    onSamePageClick?.();
   };
 
-  // Use a refined preset for professional motion
-  const baseContainer = luxuryPresets.cascade.container;
-  const baseItem = luxuryPresets.cascade.item;
-
+  // Each link rises out of its own mask, one after another.
   const listVariants: Variants = {
-    hidden: baseContainer.hidden || { opacity: 0 },
-    visible: {
-      ...(baseContainer.visible as object),
-      transition: {
-        ...(baseContainer.visible?.transition as object),
-        staggerChildren: stagger,
-        delayChildren: 0.12,
-      },
-    },
+    hidden: {},
+    visible: { transition: { staggerChildren: stagger, delayChildren: 0.08 } },
   };
-
-  const itemVariants: Variants = {
-    hidden: { ...(baseItem.hidden as object) },
-    visible: {
-      ...(baseItem.visible as object),
-      // Slightly reduce travel for nav links
-      y: 0,
-      transition: {
-        ...(baseItem.visible?.transition as object),
-        duration: 0.4,
-      },
-    },
-  };
+  const itemVariants = reveal.mask(0.8);
 
   return (
     <>
@@ -89,11 +71,7 @@ export function NavigationLinks({
           animate={isOpen ? "visible" : "hidden"}
         >
           {links.map((link) => (
-            <m.li
-              key={link.key}
-              className={liClassName}
-              variants={itemVariants}
-            >
+            <li key={link.key} className={liClassName}>
               <Link
                 href={link.href}
                 className={cn(
@@ -107,9 +85,13 @@ export function NavigationLinks({
                 )}
                 onClick={(e) => handleLinkClick(e, link.href)}
               >
-                {t(link.key)}
+                <span className="reveal-mask inline-block">
+                  <m.span variants={itemVariants} className="block">
+                    {t(link.key)}
+                  </m.span>
+                </span>
               </Link>
-            </m.li>
+            </li>
           ))}
         </m.ul>
       ) : (

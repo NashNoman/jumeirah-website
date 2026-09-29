@@ -7,7 +7,6 @@ import developmentIcon from "@/../public/svg/development.svg";
 import { AnimatedGroup } from "@/components/animated-group";
 import Section from "@/components/section";
 import SectionLink from "@/components/ui/section-link";
-import { transitionVariants } from "@/lib/transitions";
 import { useTranslations } from "next-intl";
 import { ServiceGalleryCard } from "../service-gallery-card";
 
@@ -48,14 +47,13 @@ export default function OurServicesSection() {
         </SectionLink>
       )}
       className="!px-0 max-lg:!max-w-none lg:!px-4"
-      enableAnimation
     >
       <div className="container">
         <AnimatedGroup
-          variants={transitionVariants}
+          preset="card"
+          trigger="view-each"
           className="flex flex-col gap-7 lg:flex-row lg:justify-between lg:gap-7"
           childrenClassName="flex-1"
-          inherit
         >
           {galleryImages.map((image, index) => (
             <ServiceGalleryCard key={index} {...image} />

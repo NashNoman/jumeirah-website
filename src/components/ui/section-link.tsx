@@ -1,6 +1,7 @@
 "use client";
 
-import { Link, usePathname } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
+import { usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
 

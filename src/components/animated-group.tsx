@@ -1,139 +1,86 @@
 "use client";
-import { transitions } from "@/lib/transitions"; // your luxury presets
+import { inViewOnce, reveal, withDelay } from "@/lib/motion";
 import { Variants, m } from "motion/react";
 import React, { ReactNode } from "react";
 
-export type PresetType =
-  | "fade"
-  | "slide"
-  | "scale"
-  | "blur"
-  | "blur-slide"
-  | "zoom"
-  | "rotate";
+export type RevealPreset = "rise" | "fade" | "button" | "card";
 
 export type AnimatedGroupProps = {
   children: ReactNode;
   className?: string;
   childrenClassName?: string;
-  variants?: { container?: Variants; item?: Variants };
-  preset?: PresetType;
+  preset?: RevealPreset;
   as?: React.ElementType;
-  inView?:
-    | boolean
-    | { once?: boolean; amount?: number | "some" | "all"; margin?: string };
-  disabled?: boolean;
-  inherit?: boolean;
+  /**
+   * `view`: the group plays once it is on screen, children staggered.
+   * `view-each`: every child plays when it reaches the screen itself, so
+   * items further down never animate off-screen.
+   * `mount`: plays immediately (above-the-fold content).
+   */
+  trigger?: "view" | "view-each" | "mount";
+  delay?: number;
+  stagger?: number;
+  /** Share of the element that must be visible before it plays. */
+  amount?: number;
   ref?: React.RefObject<any>;
 };
-
-const defaultContainerVariants: Variants = {
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const defaultItemVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-const presetVariants: Record<PresetType, Variants> = {
-  fade: {},
-  slide: {
-    hidden: { y: 20 },
-    visible: { y: 0, transition: transitions.heroReveal },
-  },
-  scale: {
-    hidden: { scale: 0.95 },
-    visible: { scale: 1, transition: transitions.uiDeliberate },
-  },
-  blur: {
-    hidden: { filter: "blur(6px)" },
-    visible: { filter: "blur(0px)", transition: transitions.fadeIn },
-  },
-  "blur-slide": {
-    hidden: { filter: "blur(6px)", y: 20 },
-    visible: { filter: "blur(0px)", y: 0, transition: transitions.heroReveal },
-  },
-  zoom: {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: { scale: 1, opacity: 1, transition: transitions.heroCinematic },
-  },
-  rotate: {
-    hidden: { rotate: -6, opacity: 0 },
-    visible: { rotate: 0, opacity: 1, transition: transitions.uiQuick },
-  },
-};
-
-const mergeVariants = (base: Variants, override: Variants) => ({
-  hidden: { ...base.hidden, ...override.hidden },
-  visible: { ...base.visible, ...override.visible },
-});
-
-function getMotionVisibilityProps(
-  inView: AnimatedGroupProps["inView"],
-  inherit: boolean,
-) {
-  if (inherit) return {};
-  if (inView) {
-    return {
-      initial: "hidden" as const,
-      whileInView: "visible" as const,
-      viewport:
-        typeof inView === "object"
-          ? inView
-          : { once: true, amount: 0.1, margin: "-50px" },
-    };
-  }
-  return { initial: "hidden" as const, animate: "visible" as const };
-}
 
 const AnimatedGroup = ({
   children,
   className,
   childrenClassName,
-  variants,
-  preset,
+  preset = "rise",
   as = "div",
-  inView = false,
-  disabled = false,
-  inherit = false,
+  trigger = "view",
+  delay = 0,
+  stagger = 0.08,
+  amount = 0.25,
   ref,
 }: AnimatedGroupProps) => {
-  const containerVariants = variants?.container || defaultContainerVariants;
-  const itemVariants = mergeVariants(
-    defaultItemVariants,
-    preset ? presetVariants[preset] : variants?.item || {},
-  );
+  const item = reveal[preset];
 
   const MotionComponent: React.ComponentType<any> =
     ((m as any)[as as keyof typeof m] as React.ComponentType<any>) || m.div;
 
-  if (disabled) {
-    const ContainerTag = as as React.ElementType;
+  if (trigger === "view-each") {
+    const Tag = as;
     return (
-      <ContainerTag className={className} ref={ref}>
+      <Tag className={className} ref={ref}>
         {React.Children.map(children, (child, i) => (
-          <div key={i} className={childrenClassName}>
+          <m.div
+            key={i}
+            variants={withDelay(item, delay + i * stagger)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce(amount)}
+            className={childrenClassName}
+          >
             {child}
-          </div>
+          </m.div>
         ))}
-      </ContainerTag>
+      </Tag>
     );
   }
 
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: { delayChildren: delay, staggerChildren: stagger },
+    },
+  };
+
   return (
     <MotionComponent
-      {...getMotionVisibilityProps(inView, inherit)}
-      variants={containerVariants}
+      initial="hidden"
+      {...(trigger === "mount"
+        ? { animate: "visible" }
+        : { whileInView: "visible", viewport: inViewOnce(amount) })}
+      variants={container}
       className={className}
       ref={ref}
     >
       {React.Children.map(children, (child, i) => (
-        <m.div key={i} variants={itemVariants} className={childrenClassName}>
+        <m.div key={i} variants={item} className={childrenClassName}>
           {child}
         </m.div>
       ))}
@@ -141,5 +88,4 @@ const AnimatedGroup = ({
   );
 };
 
-AnimatedGroup.displayName = "AnimatedGroup";
 export { AnimatedGroup };

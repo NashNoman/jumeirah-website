@@ -11,7 +11,8 @@ import xIcon from "@/../public/svg/x-icon.svg";
 import ContactUsForm from "@/components/contact-us-form";
 import GlassCard from "@/components/ui/glass-card";
 import Logo from "@/components/ui/logo";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
 import Image, { StaticImageData } from "next/image";
@@ -43,13 +44,22 @@ export default function ContactUsSection({
             <div className="flex flex-col gap-5 lg:flex-row lg:gap-5">
               <div className="flex items-center gap-3">
                 <Icon src={phoneIcon} alt="Phone Icon" />
-                <p dir="ltr" className="text-nowrap">
-                  +(967) 778265522
-                </p>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  dir="ltr"
+                  className="text-nowrap text-[#9C9C9C]"
+                >
+                  {siteConfig.phone}
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Icon src={emailIcon} alt="Email Icon" />
-                <p>info@jumeirahye.com</p>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="text-[#9C9C9C]"
+                >
+                  {siteConfig.email}
+                </a>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -65,13 +75,13 @@ export default function ContactUsSection({
             )}
           </Card>
           {isFooter && (
-            <Card className="flex flex-grow flex-col justify-between gap-8 [&_h5]:font-semibold [&_li]:text-sm">
+            <Card className="flex flex-grow flex-col justify-between gap-8 [&_li]:text-sm">
               <footer className="inline-flex flex-col items-center self-start text-center">
                 <Logo wideLogo className="w-40 md:w-60 lg:w-52" />
               </footer>
               <nav className="grid grid-cols-2 gap-y-8 lg:grid-cols-4">
                 <div className="flex-1 space-y-4">
-                  <h5>{common("company")}</h5>
+                  <p className="font-semibold">{common("company")}</p>
                   <ul className="space-y-2 text-[#D2D2D2]">
                     <FooterLink href="/about">{common("about")}</FooterLink>
                     <FooterLink href="/contact">
@@ -80,10 +90,13 @@ export default function ContactUsSection({
                   </ul>
                 </div>
                 <div className="flex-1 space-y-4">
-                  <h5>{common("projects")}</h5>
+                  <p className="font-semibold">{common("projects")}</p>
                   <ul className="space-y-2 text-[#D2D2D2]">
                     <FooterLink href="/projects">
                       {common("all-projects")}
+                    </FooterLink>
+                    <FooterLink href="/projects/manarat-al-hudaydah">
+                      {projects("manarat-al-hudaydah")}
                     </FooterLink>
                     <FooterLink href="/projects/sanaa-towers">
                       {projects("sanaa-towers")}
@@ -94,7 +107,7 @@ export default function ContactUsSection({
                   </ul>
                 </div>
                 <div className="col-span-2 space-y-4">
-                  <h5>{common("subscribe")}</h5>
+                  <p className="font-semibold">{common("subscribe")}</p>
                   <p className="text-sm text-[#9C9C9C]">
                     {common("subscribe-description")}
                   </p>

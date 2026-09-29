@@ -1,31 +1,42 @@
+import { siteConfig } from "@/lib/site";
 import { useTranslations } from "next-intl";
 
 export default function StructuredData({ locale }: { locale: string }) {
   const t = useTranslations("Metadata");
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jumeirahye.com";
-
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    name: "Jumeirah Real Estate Investment",
-    alternateName: "Jumeirah Real Estate Investment",
-    url: baseUrl,
-    logo: `${baseUrl}/images/logo.png`,
+    "@id": siteConfig.organizationId,
+    name: siteConfig.name,
+    legalName: siteConfig.legalName,
+    url: siteConfig.baseUrl,
+    logo: siteConfig.logo,
     description: t("description"),
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
     address: {
       "@type": "PostalAddress",
-      addressCountry: "YE",
-      addressLocality: "Sana'a",
+      addressCountry: siteConfig.address.country,
+      addressLocality: siteConfig.address.locality,
     },
-    sameAs: [
-      "https://www.facebook.com/JumeirahYemen",
-      "https://www.instagram.com/JumeirahYemen",
-      "https://www.linkedin.com/company/jumeirahye",
-      "https://www.x.com/JumeirahYemen",
-    ],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteConfig.geo.latitude,
+      longitude: siteConfig.geo.longitude,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: siteConfig.openingHours.dayOfWeek,
+      opens: siteConfig.openingHours.opens,
+      closes: siteConfig.openingHours.closes,
+    },
+    areaServed: siteConfig.address.country,
+    sameAs: siteConfig.sameAs,
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
       contactType: "Customer Service",
       availableLanguage: ["English", "Arabic"],
     },
@@ -34,18 +45,10 @@ export default function StructuredData({ locale }: { locale: string }) {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Jumeirah Real Estate Investment",
-    url: baseUrl,
+    name: siteConfig.name,
+    url: siteConfig.baseUrl,
     description: t("description"),
     inLanguage: [locale],
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${baseUrl}/${locale}/projects?search={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (

@@ -9,7 +9,8 @@ import xIcon from "@/../public/svg/x-icon.svg";
 import ContactUsForm from "@/components/contact-us-form";
 import GlassCard from "@/components/ui/glass-card";
 import Logo from "@/components/ui/logo";
-import { Link } from "@/i18n/navigation";
+import Link from "@/components/progress-link";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Image, { StaticImageData } from "next/image";
@@ -36,13 +37,17 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Icon src={emailIcon} alt="Email Icon" />
-                <p>info@jumeirahye.com</p>
+                <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               </div>
               <div className="flex items-center gap-3">
                 <Icon src={phoneIcon} alt="Phone Icon" />
-                <p dir="ltr" className="text-nowrap">
-                  +967778265522
-                </p>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  dir="ltr"
+                  className="text-nowrap"
+                >
+                  {siteConfig.phone}
+                </a>
               </div>
             </div>
           </div>
@@ -50,17 +55,20 @@ export default function Footer() {
           {/* Column 2: Navigation */}
           <nav className="grid grid-cols-2 gap-y-14 self-center">
             <div className="flex-1 space-y-4">
-              <h5 className="font-semibold">{common("company")}</h5>
+              <p className="font-semibold">{common("company")}</p>
               <ul className="space-y-2 text-[#D2D2D2]">
                 <FooterLink href="/about">{common("about")}</FooterLink>
                 <FooterLink href="/contact">{common("contact-us")}</FooterLink>
               </ul>
             </div>
             <div className="flex-1 space-y-4">
-              <h5 className="font-semibold">{common("projects")}</h5>
+              <p className="font-semibold">{common("projects")}</p>
               <ul className="space-y-2 text-[#D2D2D2]">
                 <FooterLink href="/projects">
                   {common("all-projects")}
+                </FooterLink>
+                <FooterLink href="/projects/manarat-al-hudaydah">
+                  {projects("manarat-al-hudaydah")}
                 </FooterLink>
                 <FooterLink href="/projects/sanaa-towers">
                   {projects("sanaa-towers")}
@@ -71,7 +79,7 @@ export default function Footer() {
               </ul>
             </div>
             <div className="col-span-2 space-y-4">
-              <h5 className="font-semibold">{common("subscribe")}</h5>
+              <p className="font-semibold">{common("subscribe")}</p>
               <p className="text-sm text-[#9C9C9C]">
                 {common("subscribe-description")}
               </p>

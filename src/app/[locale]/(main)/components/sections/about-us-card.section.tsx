@@ -8,7 +8,6 @@ import SectionWrapper from "@/components/section-wrapper";
 import { TextEffect } from "@/components/text-effect";
 import Card from "@/components/ui/card";
 import GridBackgroundEffect from "@/components/ui/grid-background-effect";
-import { transitionVariants } from "@/lib/transitions";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -19,7 +18,6 @@ export default function AboutUsCard() {
   return (
     <SectionWrapper
       className="relative container mx-auto mb-6 max-md:px-4 lg:mb-36"
-      enableAnimation
     >
       <GridBackgroundEffect className="absolute start-1/2 top-0 container -translate-x-1/2 rotate-180 object-contain object-top opacity-90 rtl:translate-x-1/2" />
       <Card className="container border-2 border-[#7A7A7A]/60">
@@ -27,34 +25,22 @@ export default function AboutUsCard() {
           <div className="xl:col-span-3">
             <TextEffect
               className="first-letter-primary text-[1.4rem] leading-tight md:text-[1.6rem] lg:mb-5 lg:text-4xl"
-              preset="cascade"
               as="h2"
-              inherit
+              stagger={0.04}
             >
               {t("title")}
             </TextEffect>
             <TextEffect
               className="mt-2 text-sm font-light text-[#DFDFDF] md:mt-5 md:text-lg lg:text-xl"
-              preset="cascade"
+              reveal="fade"
               as="p"
-              inherit
+              delay={0.15}
             >
               {t("description")}
             </TextEffect>
           </div>
           <AnimatedGroup
-            variants={{
-              container: {
-                visible: {
-                  transition: {
-                    staggerChildren: 0.3,
-                    delayChildren: 0.8,
-                  },
-                },
-              },
-              ...transitionVariants,
-            }}
-            inherit
+            stagger={0.12}
             className="md:col-start-1 md:row-start-2 xl:col-span-3"
           >
             <div className="relative overflow-hidden rounded-full">
@@ -69,8 +55,7 @@ export default function AboutUsCard() {
               </div>
             </div>
             <AnimatedGroup
-              variants={transitionVariants}
-              inherit
+              delay={0.1}
               className="z-50 mt-4 flex items-center justify-center gap-2"
             >
               <GotoIcon alt="about-us" className="lg:max-xl:size-12" />
@@ -83,60 +68,48 @@ export default function AboutUsCard() {
             </AnimatedGroup>
           </AnimatedGroup>
           <section className="xl:col-span-2">
-            <AnimatedGroup
-              variants={transitionVariants}
-              inherit
-              className="flex items-center gap-5 md:mb-5 xl:mt-5 xl:mb-8 xl:gap-7"
-            >
+            <AnimatedGroup className="flex items-center gap-5 md:mb-5 xl:mt-5 xl:mb-8 xl:gap-7">
               <Image
                 src={targetIcon}
                 alt="target-icon"
                 className="size-6 lg:size-8 xl:size-10"
               />
               <TextEffect
-                preset="cascade"
                 as="h3"
-                inherit
+                delay={0.08}
                 className="first-letter-primary text-[1.4rem] md:text-[1.6rem] lg:text-4xl"
               >
                 {t("our-vision")}
               </TextEffect>
             </AnimatedGroup>
             <TextEffect
-              preset="cascade"
+              reveal="fade"
               as="p"
-              delay={0.4}
-              inherit
+              delay={0.2}
               className="mt-2 text-sm font-light text-[#9C9C9C] md:text-lg lg:text-xl"
             >
               {t("our-vision-subtext")}
             </TextEffect>
           </section>
           <section className="justify-center lg:flex lg:flex-col xl:col-span-2">
-            <AnimatedGroup
-              variants={transitionVariants}
-              inherit
-              className="flex items-center gap-5 md:mb-5 xl:mt-5 xl:mb-8 xl:gap-7"
-            >
+            <AnimatedGroup className="flex items-center gap-5 md:mb-5 xl:mt-5 xl:mb-8 xl:gap-7">
               <Image
                 src={missionIcon}
                 alt="target-icon"
                 className="size-6 md:size-8 lg:size-9 xl:size-11"
               />
               <TextEffect
-                preset="cascade"
                 as="h3"
-                inherit
+                delay={0.08}
                 className="first-letter-primary text-[1.4rem] md:text-[1.6rem] lg:text-4xl"
               >
                 {t("our-message")}
               </TextEffect>
             </AnimatedGroup>
             <TextEffect
-              preset="cascade"
+              reveal="fade"
               as="p"
-              delay={0.4}
-              inherit
+              delay={0.2}
               className="mt-2 text-sm font-light text-[#9C9C9C] md:text-lg lg:text-xl"
             >
               {t("our-message-subtext")}
